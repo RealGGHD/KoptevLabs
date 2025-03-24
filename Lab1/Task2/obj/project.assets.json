@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\georg\\Documents\\Git\\KoptevLabs\\Lab1\\Lab1.csproj",
-      "projectName": "Lab1",
-      "projectPath": "C:\\Users\\georg\\Documents\\Git\\KoptevLabs\\Lab1\\Lab1.csproj",
+      "projectUniqueName": "C:\\Users\\georg\\Documents\\Git\\KoptevLabs\\Lab1\\Task2\\Task2.csproj",
+      "projectName": "Task2",
+      "projectPath": "C:\\Users\\georg\\Documents\\Git\\KoptevLabs\\Lab1\\Task2\\Task2.csproj",
       "packagesPath": "C:\\Users\\georg\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\georg\\Documents\\Git\\KoptevLabs\\Lab1\\obj\\",
+      "outputPath": "C:\\Users\\georg\\Documents\\Git\\KoptevLabs\\Lab1\\Task2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\georg\\AppData\\Roaming\\NuGet\\NuGet.Config"
