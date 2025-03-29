@@ -2,7 +2,7 @@
 
 class Program
 {
-    static void Test(string[] args)
+    static void Main()
     {
         Console.Write("Choose exercise (1/2): ");
         string variant = Console.ReadLine();
@@ -25,9 +25,9 @@ class Program
         Console.Write("Choose variant (1/2): ");
         string variant = Console.ReadLine();
         
-        Console.Write("Write array A (For example: 10.2 3 52): ");
+        Console.Write("Write array A (Like: 10.2 3 52): ");
         string arrayA = Console.ReadLine();
-        Console.Write("Write array B (For example: 73 5 93.1): ");
+        Console.Write("Write array B (Like: 73 5 93.1): ");
         string arrayB = Console.ReadLine();
         Array myObject = new Array(arrayA, arrayB);
         
@@ -47,7 +47,6 @@ class Program
         {
             throw new Exception("Error: Invalid variant!");
         }
-        
         double result = myObject.Calculate(myObject.A, myObject.B, myObject.C);
         Console.WriteLine($"Result: {result}");
     }
@@ -155,11 +154,13 @@ class Array
     
     public double GroupList1(double[] array) //The sum of positive elements after the second maximum
     {
+        List<double> temp = array.ToList();
+        double fMax = temp.Max();
+        temp.Remove(fMax);
+        double sMax = temp.Max();
+        int sMaxIndex = temp.IndexOf(sMax);
+        
         List<double> list = array.ToList();
-        double fMax = list.Max();
-        list.Remove(fMax);
-        double sMax = list.Max();
-        int sMaxIndex = list.IndexOf(sMax);
         list.RemoveRange(0, sMaxIndex + 1);
         List<double> sumList = new List<double>();
         foreach (double element in list)
@@ -174,9 +175,11 @@ class Array
     
     public double GroupList2(double[] array) //Sum of negative elements after the 2nd zero
     {
+        List<double> temp = array.ToList();
+        temp.Remove(0); //Remove first 0
+        int sZeroIndex = temp.IndexOf(0); //Index second 0
+        
         List<double> list = array.ToList();
-        list.Remove(0); //Remove first 0
-        int sZeroIndex = list.IndexOf(0);
         list.RemoveRange(0, sZeroIndex + 1);
         List<double> sumList = new List<double>();
         foreach (double element in list)
@@ -191,7 +194,7 @@ class Array
 
     public double Calculate(double a, double b, double c)
     {
-        return (2 * Math.Sin(a)) + (3 * b * Math.Pow(Math.Cos(c), 3)) / (a + b);
+        return (2.0 * Math.Sin(a)) + (3.0 * b * Math.Pow(Math.Cos(c), 3)) / (a + b);
     }
 }
 
@@ -234,7 +237,7 @@ class Student
             string surname = Console.ReadLine();
             Console.Write("Write group number: ");
             int groupNumber = int.Parse(Console.ReadLine());
-            Console.Write("Write grades (For example: 1 2 3 4 5): ");
+            Console.Write("Write grades (Like: 1 2 3 4 5): ");
             int[] grades = Console.ReadLine().Split(' ').Select(x => int.Parse(x)).ToArray();
             Student student = new Student(surname, groupNumber, grades);
             myStudents.Add(student);
