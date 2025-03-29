@@ -85,7 +85,7 @@ class Array
         List<double> sumList = new List<double>();
         foreach (double element in list)
         {
-            if (element > 0) //Sum of all possitive
+            if (element > 0) //Sum of all positive
             {
                 sumList.Add(element);
             }
