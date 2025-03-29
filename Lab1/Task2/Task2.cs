@@ -40,14 +40,6 @@ class StudentCollection
     //Init private fields
     private List<Student> _students = new List<Student>();
     /// <summary>
-    /// Add student to collection
-    /// </summary>
-    public void AddStudent(Student student) => _students.Add(student);
-    /// <summary>
-    /// Is student failing? Any one grade is 2.
-    /// </summary>
-    public IEnumerable<Student> Students => _students;
-    /// <summary>
     /// Initialize and insert all students in array
     /// </summary>
     public static StudentCollection CreateFromConsoleInput()
@@ -80,7 +72,7 @@ class StudentCollection
             if (string.IsNullOrEmpty(gradesInput)) throw new Exception("Error: Invalid grades!");
             int[] grades = gradesInput.Split(' ').Select(int.Parse).ToArray();
             //Add student to collection
-            collection.AddStudent(new Student(surname, group, grades));
+            collection._students.Add(new Student(surname, group, grades));
         }
         //Return collection
         return collection;
