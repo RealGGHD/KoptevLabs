@@ -1,0 +1,15 @@
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Task2\bin\Debug\net9.0\Task2.exe
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Task2\bin\Debug\net9.0\Task2.deps.json
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Task2\bin\Debug\net9.0\Task2.runtimeconfig.json
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Task2\bin\Debug\net9.0\Task2.dll
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Task2\bin\Debug\net9.0\Task2.pdb
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Task2\obj\Debug\net9.0\Task2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Task2\obj\Debug\net9.0\Task2.AssemblyInfoInputs.cache
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Task2\obj\Debug\net9.0\Task2.AssemblyInfo.cs
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Task2\obj\Debug\net9.0\Task2.csproj.CoreCompileInputs.cache
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Task2\obj\Debug\net9.0\Task2.sourcelink.json
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Task2\obj\Debug\net9.0\Task2.dll
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Task2\obj\Debug\net9.0\refint\Task2.dll
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Task2\obj\Debug\net9.0\Task2.pdb
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Task2\obj\Debug\net9.0\Task2.genruntimeconfig.cache
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Task2\obj\Debug\net9.0\ref\Task2.dll
