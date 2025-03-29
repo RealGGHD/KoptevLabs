@@ -31,11 +31,26 @@ class Array
     /// <summary>
     /// Constructor
     /// </summary>
-    public Array(double[] arrayA, double[] arrayB)
+    public Array()
     {
-        _arrayA = arrayA;
-        _arrayB = arrayB;
+        _arrayA = InitArray("A");
+        _arrayB = InitArray("B");
         _arrayC = InitArrayC(_arrayA, _arrayB);
+    }
+    /// <summary>
+    /// Initialize Array A or B
+    /// </summary>
+    double[] InitArray(string name)
+    {
+        Console.Write($"Write array {name} (Like: 10.2 3 52): ");
+        string? input = Console.ReadLine();
+        if (string.IsNullOrEmpty(input))
+        {
+            throw new Exception("Error: Invalid input!");
+        }
+        string[] values = input.Split(' ');
+        double[] array = System.Array.ConvertAll(values, double.Parse);
+        return array;
     }
     /// <summary>
     /// Initialize Array C
@@ -105,26 +120,8 @@ class Task1
 {
     static void Main()
     {
-        //Input ArrayA
-        Console.Write("Write array A (Like: 10.2 3 52): ");
-        string? inputA = Console.ReadLine();
-        if (string.IsNullOrEmpty(inputA))
-        {
-            throw new Exception("Error: Invalid input!");
-        }
-        string[] valuesA = inputA.Split(' ');
-        double[] arrayA = System.Array.ConvertAll(valuesA, double.Parse);
-        //Input ArrayB
-        Console.Write("Write array A (Like: 73 5 93.1): ");
-        string? inputB = Console.ReadLine();
-        if (string.IsNullOrEmpty(inputB))
-        {
-            throw new Exception("Error: Invalid input!");
-        }
-        string[] valuesB = inputB.Split(' ');
-        double[] arrayB = System.Array.ConvertAll(valuesB, double.Parse);
         //Init MyObject
-        Array myObject = new Array(arrayA, arrayB);
+        Array myObject = new Array();
         //Init A, B and C
         myObject.A = myObject.GroupList(myObject.ArrayA);
         myObject.B = myObject.GroupList(myObject.ArrayB) * 2.0;
