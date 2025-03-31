@@ -40,9 +40,15 @@ class StudentCollection
     //Init private fields
     private List<Student> _students = new List<Student>();
     /// <summary>
+    /// Constructor to initialize an empty student collection
+    /// </summary>
+    public StudentCollection()
+    {
+    }
+    /// <summary>
     /// Initialize and insert all students in array
     /// </summary>
-    public static StudentCollection CreateFromConsoleInput()
+    public void ReadStudentsFromConsole()
     {
         //Create collection
         var collection = new StudentCollection();
@@ -72,10 +78,8 @@ class StudentCollection
             if (string.IsNullOrEmpty(gradesInput)) throw new Exception("Error: Invalid grades!");
             int[] grades = gradesInput.Split(' ').Select(int.Parse).ToArray();
             //Add student to collection
-            collection._students.Add(new Student(surname, group, grades));
+            _students.Add(new Student(surname, group, grades));
         }
-        //Return collection
-        return collection;
     }
     /// <summary>
     /// Print students sorted by surname
@@ -125,13 +129,15 @@ class Task2
 {
     static void Main()
     {
-        //Initialize of students
-        var students = StudentCollection.CreateFromConsoleInput();
-        //SortedStudents by Alphabet
+        //Initialize students collection
+        var students = new StudentCollection();
+        //Read students data from console
+        students.ReadStudentsFromConsole();
+        //Sorted students by alphabet
         students.SortedStudents();
         //Amount of failing students
         students.FailingStudents();
-        ////Excellent students in each group
+        //Excellent students in each group
         students.ExcellentByGroups(); 
     }
 }
