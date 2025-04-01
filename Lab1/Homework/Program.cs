@@ -57,7 +57,7 @@ class Program
         //Amount of failing students
         students.FailingStudents();
         //Excellent students in each group
-        students.ExcellentByGroups(); 
+        students.ExcellentByGroups();
     }
 }
 
@@ -228,8 +228,6 @@ class StudentCollection
     /// </summary>
     public void ReadStudents()
     {
-        //Create collection
-        var collection = new StudentCollection();
         //Input number of students
         Console.Write("How many students: ");
         string? input = Console.ReadLine();
