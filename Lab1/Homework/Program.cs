@@ -34,17 +34,18 @@ class Program
     {
         //Init MyObject
         Array myObject = new Array();
-        //Print array C
+        //Print Array C
         Console.Write("Array C: ");
         myObject.PrintArray(myObject.ArrayC);
         //Init A, B and C
         myObject.A = myObject.GroupList(myObject.ArrayA);
         myObject.B = myObject.GroupList(myObject.ArrayB) * 2.0;
         myObject.C = myObject.GroupList(myObject.ArrayC) / 2.0;
-        //Calculate function
+        Console.WriteLine($"\nA: {myObject.A}, B: {myObject.B}, C: {myObject.C}");
+        //Calculate function    
         double result = myObject.Calculate(myObject.A, myObject.B, myObject.C);
         //Print Result
-        Console.WriteLine($"\nResult: {result}");
+        Console.Write($"Result: {result}\n");
     }
     /// <summary>
     /// Start Task2

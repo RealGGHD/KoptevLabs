@@ -73,6 +73,7 @@ class Array
         
         List<double> listA = arrayA.ToList();
         int minAIndex = System.Array.LastIndexOf(arrayA, arrayA.Min()); //Right minimum index of A
+        
         if (inputIndex > minAIndex)
         {
             listA = listA.GetRange(minAIndex + 1, inputIndex - 2); //Range from Min to Input 
@@ -98,7 +99,7 @@ class Array
     }
     /// <summary>
     /// The sum of positive elements after the second maximum
-    /// </summary>
+    ///  </summary>
     public double GroupList(double[] array)
     {
         List<double> temp = array.ToList();
