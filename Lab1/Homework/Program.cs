@@ -242,16 +242,25 @@ class StudentCollection
             //Input surname
             Console.Write("Write surname: ");
             string? surname = Console.ReadLine();
-            if (string.IsNullOrEmpty(surname)) throw new Exception("Error: Invalid surname!");
+            if (string.IsNullOrEmpty(surname))
+            {
+                throw new Exception("Error: Invalid surname!");
+            }
             //Input group number
             Console.Write("Write group number: ");
             string? groupNumber = Console.ReadLine();
-            if (string.IsNullOrEmpty(groupNumber)) throw new Exception("Error: Invalid group number!");
+            if (string.IsNullOrEmpty(groupNumber))
+            {
+                throw new Exception("Error: Invalid group number!");
+            }
             int group = int.Parse(groupNumber);
             //Input grades
             Console.Write("Write grades (Like: 1 2 3 4 5): ");
-            string? gradesInput = Console.ReadLine(); 
-            if (string.IsNullOrEmpty(gradesInput)) throw new Exception("Error: Invalid grades!");
+            string? gradesInput = Console.ReadLine();
+            if (string.IsNullOrEmpty(gradesInput))
+            {
+                throw new Exception("Error: Invalid grades!");
+            }
             int[] grades = gradesInput.Split(' ').Select(int.Parse).ToArray();
             //Add student to collection
             _students.Add(new Student(surname, group, grades));
