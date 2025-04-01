@@ -51,7 +51,7 @@ class Program
         //Initialize students collection
         var students = new StudentCollection();
         //Read students data from console
-        students.ReadStudentsFromConsole();
+        students.ReadStudents();
         //Sorted students by alphabet
         students.SortedStudents();
         //Amount of failing students
@@ -226,7 +226,7 @@ class StudentCollection
     /// <summary>
     /// Initialize and insert all students in array
     /// </summary>
-    public void ReadStudentsFromConsole()
+    public void ReadStudents()
     {
         //Create collection
         var collection = new StudentCollection();
