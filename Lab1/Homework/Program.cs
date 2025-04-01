@@ -19,18 +19,18 @@ class Program
             int task = int.Parse(input);
             if (task == 1)
             {
-                Task1();
+                TaskOne();
             }
             else if (task == 2)
             {
-                Task2();
+                TaskTwo();
             }
         }
     }
     /// <summary>
     /// Start Task1
     /// </summary>
-    static void Task1()
+    static void TaskOne()
     {
         //Init MyObject
         Array myObject = new Array();
@@ -46,7 +46,7 @@ class Program
     /// <summary>
     /// Start Task2
     /// </summary>
-    static void Task2()
+    static void TaskTwo()
     {
         //Initialize students collection
         var students = new StudentCollection();
