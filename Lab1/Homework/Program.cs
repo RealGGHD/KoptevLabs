@@ -32,20 +32,19 @@ class Program
     /// </summary>
     static void TaskOne()
     {
-        //Init MyObject
-        Array myObject = new Array();
-        //Print Array C
+        var array = new Array();
+        var arrayAction = new ArrayAction();
+        // Input Array C
         Console.Write("Array C: ");
-        myObject.PrintArray(myObject.ArrayC);
-        //Init A, B and C
-        myObject.A = myObject.GroupList(myObject.ArrayA);
-        myObject.B = myObject.GroupList(myObject.ArrayB) * 2.0;
-        myObject.C = myObject.GroupList(myObject.ArrayC) / 2.0;
-        Console.WriteLine($"\nA: {myObject.A}, B: {myObject.B}, C: {myObject.C}");
-        //Calculate function    
-        double result = myObject.Calculate(myObject.A, myObject.B, myObject.C);
-        //Print Result
-        Console.Write($"Result: {result}\n");
+        array.PrintArray(array.ArrayC);
+        // Calculate A, B and C
+        double a = arrayAction.SumPositiveAfterSecondMax(array.ArrayA);
+        double b = arrayAction.SumPositiveAfterSecondMax(array.ArrayB) * 2.0;
+        double c = arrayAction.SumPositiveAfterSecondMax(array.ArrayC) / 2.0;
+        Console.WriteLine($"\nA: {a}, B: {b}, C: {c}");
+        // Calculate result
+        double result = arrayAction.Calculate(a, b, c);
+        Console.WriteLine($"Result: {result}");
     }
     /// <summary>
     /// Start Task2
@@ -53,7 +52,7 @@ class Program
     static void TaskTwo()
     {
         //Initialize students collection
-        var students = new StudentCollection();
+        var students = new StudentAction();
         //Read students data from console
         students.ReadStudents();
         //Sorted students by alphabet

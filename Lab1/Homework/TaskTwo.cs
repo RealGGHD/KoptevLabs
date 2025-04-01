@@ -27,24 +27,15 @@ class Student
         _groupNumber = groupNumber;
         _grades = grades;
     }
-    /// <summary>
-    /// Is student failing? Any one grade is 2.
-    /// </summary>
-    public bool IsFailing() => _grades.Any(grade => grade == 2);
-    /// <summary>
-    /// Is student excellent? All grades are 5.
-    /// </summary>
-    public bool IsExcellent() => _grades.All(grade => grade == 5);
 }
-
-class StudentCollection
+class StudentAction
 {
     //Init private fields
     private List<Student> _students = new List<Student>();
     /// <summary>
     /// Constructor to initialize an empty student collection
     /// </summary>
-    public StudentCollection()
+    public StudentAction()
     {
     }
     /// <summary>
@@ -91,28 +82,16 @@ class StudentCollection
         }
     }
     /// <summary>
-    /// Indexer to access students by index
-    /// </summary>
-    public Student this[int index]
-    {
-        get
-        {
-            if (index < 0 || index >= _students.Count)
-            {
-                throw new IndexOutOfRangeException("Index is out of range.");
-            }
-            return _students[index];
-        }
-    }
-    /// <summary>
     /// Print students sorted by surname
     /// </summary>
     public void SortedStudents()
     {
         Console.WriteLine("\nSorted students:");
-        foreach (var student in _students.OrderBy(s => s.Surname))
+        var sortedStudents = _students.OrderBy(student => student.Surname);
+        foreach (var student in sortedStudents)
         {
-            Console.WriteLine($"{student.Surname} | {student.GroupNumber} | {string.Join(", ", student.Grades)}");
+            string grades = string.Join(", ", student.Grades);
+            Console.WriteLine($"{student.Surname} | {student.GroupNumber} | {grades}");
         }
     }
     /// <summary>
@@ -120,7 +99,18 @@ class StudentCollection
     /// </summary>
     public void FailingStudents()
     {
-        int count = _students.Count(std => std.IsFailing());
+        int count = 0;
+        foreach (var student in _students)
+        {
+            foreach (var grade in student.Grades)
+            {
+                if (grade == 2)
+                {
+                    count++;
+                    break;
+                }
+            }
+        }
         Console.WriteLine($"\nFailing students: {count}");
     }
     /// <summary>
@@ -128,10 +118,10 @@ class StudentCollection
     /// </summary>
     public void ExcellentByGroups()
     {
-        var groups = _students.GroupBy(s => s.GroupNumber);
+        var groups = _students.GroupBy(student => student.GroupNumber); //Sort by groups
         foreach (var group in groups)
         {
-            var excellentStudents = group.Where(s => s.IsExcellent()).ToList();
+            var excellentStudents = group.Where(student => student.Grades.All(grade => grade == 5)).ToList();
             Console.WriteLine($"Excellent in group {group.Key}:");
             if (excellentStudents.Any())
             {

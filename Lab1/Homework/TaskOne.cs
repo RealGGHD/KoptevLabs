@@ -1,6 +1,5 @@
 ﻿namespace Homework;
 
-
 class Array
 {
     //Init private fields
@@ -17,75 +16,28 @@ class Array
     //Get and set private double fields
     public double A
     {
-        get { return _a; }
-        set { _a = value; }
+        get => _a;
+        set => _a = value;
     }
     public double B
     {
-        get { return _b; }
-        set { _b = value; }
+        get => _b;
+        set => _b = value;
     }
     public double C
     {
-        get { return _c; } 
-        set { _c = value; }
+        get =>  _c;
+        set => _c = value;
     }
     /// <summary>
     /// Constructor
     /// </summary>
     public Array()
     {
-        _arrayA = InitArray("A");
-        _arrayB = InitArray("B");
-        _arrayC = InitArrayC(_arrayA, _arrayB);
-    }
-    /// <summary>
-    /// Initialize Array A or B
-    /// </summary>
-    double[] InitArray(string name)
-    {
-        Console.Write($"Write array {name} (Like: 10.2 3 52): ");
-        string? input = Console.ReadLine();
-        if (string.IsNullOrEmpty(input))
-        {
-            throw new Exception("Error: Invalid input!");
-        }
-        string[] values = input.Split(' ');
-        double[] array = System.Array.ConvertAll(values, double.Parse);
-        return array;
-    }
-    /// <summary>
-    /// Initialize Array C
-    /// </summary>
-    double[] InitArrayC(double[] arrayA, double[] arrayB)
-    {
-        List<double> listB = arrayB.ToList();
-        int minBIndex = System.Array.IndexOf(arrayB, arrayB.Min()); //Left minimum index of B
-        listB.RemoveRange(0, minBIndex + 1); //Prepared B, +1 because remove everything right from min include it
-        
-        Console.Write("Write index for array C: ");
-        string? input = Console.ReadLine(); //InputIndex
-        if (string.IsNullOrEmpty(input))
-        {
-            throw new Exception("Error: Invalid input!");
-        }
-        int inputIndex = int.Parse(input);
-        
-        List<double> listA = arrayA.ToList();
-        int minAIndex = System.Array.LastIndexOf(arrayA, arrayA.Min()); //Right minimum index of A
-        
-        if (inputIndex > minAIndex)
-        {
-            listA = listA.GetRange(minAIndex + 1, inputIndex - 2); //Range from Min to Input 
-        } else if (inputIndex < minAIndex)
-        {
-            listA = listA.GetRange(inputIndex + 1, minAIndex - 1); //Range from Input to Min
-        }
-        else
-        {
-            return listB.ToArray(); //Return range without A
-        }
-        return listB.Concat(listA).ToArray(); //Return range with B + A
+        var action = new ArrayAction();
+        _arrayA = action.InitArray("A");
+        _arrayB = action.InitArray("B");
+        _arrayC = action.InitArrayC(_arrayA, _arrayB);
     }
     /// <summary>
     /// Print Array
@@ -97,28 +49,76 @@ class Array
             Console.Write($"{item} ");
         }
     }
+}
+
+class ArrayAction
+{
+    /// <summary>
+    /// Initialize array
+    /// </summary>
+    public double[] InitArray(string name)
+    {
+        Console.Write($"Write array {name} (Like: 10.2 3 52): ");
+        string? input = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            throw new ArgumentException("Error: Invalid input!");
+        }
+        string[] values = input.Split(' ');
+        return System.Array.ConvertAll(values, double.Parse);
+    }
+    /// <summary>
+    /// Initialize Array C
+    /// </summary>
+    public double[] InitArrayC(double[] arrayA, double[] arrayB)
+    {
+        int minBIndex = System.Array.IndexOf(arrayB, arrayB.Min()); //Index of Min in Array B
+        double[] subArrayB = arrayB.Skip(minBIndex + 1).ToArray(); //All elements after min Array B
+        
+        int minAIndex = System.Array.LastIndexOf(arrayA, arrayA.Min()); //Right minimum index of A
+        Console.Write("Write index for array C: ");
+        string? input = Console.ReadLine(); //InputIndex
+        if (string.IsNullOrEmpty(input))
+        {
+            throw new Exception("Error: Invalid input!");
+        }
+        int inputIndex = int.Parse(input);
+        double[] subArrayA = arrayA;
+        if (inputIndex > minAIndex)
+        {
+            int count = inputIndex - (minAIndex + 1);
+            if (count < 0)
+            {
+                subArrayA = arrayA.Skip(minAIndex + 1).Take(count).ToArray();
+            }
+        }
+        else if (inputIndex < minAIndex)
+        {
+            int count = minAIndex - (inputIndex + 1);
+            if (count > 0)
+            {
+                subArrayA  = arrayA.Skip(inputIndex + 1).Take(count).ToArray();
+            }
+        }
+        else
+        {
+            return subArrayB;
+        }
+        return subArrayB.Concat(subArrayA).ToArray();
+    }
     /// <summary>
     /// The sum of positive elements after the second maximum
     ///  </summary>
-    public double GroupList(double[] array)
+    public double SumPositiveAfterSecondMax(double[] array)
     {
-        List<double> temp = array.ToList();
-        double fMax = temp.Max(); //First Max
-        temp.Remove(fMax);
-        double sMax = temp.Max(); //Second Max
-        int sMaxIndex = temp.IndexOf(sMax); //Second Max Index
-        
-        List<double> list = array.ToList();
-        list.RemoveRange(0, sMaxIndex + 1); //Delete all left from second max
-        List<double> sumList = new List<double>();
-        foreach (double element in list)
+        var uniqueValues = array.Distinct().OrderByDescending(x => x).ToList(); //Unique sort from max to min
+        if (uniqueValues.Count < 2)
         {
-            if (element > 0) //Sum of all positive
-            {
-                sumList.Add(element);
-            }
+            throw new InvalidOperationException("Not enough elements in array!");
         }
-        return sumList.Sum();
+        double secondMax = uniqueValues[1]; //Second Max
+        int secondMaxIndex = System.Array.IndexOf(array, secondMax);
+        return array.Skip(secondMaxIndex + 1).Where(x => x > 0).Sum();
     }
     /// <summary>
     /// Calculate function
