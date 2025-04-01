@@ -125,9 +125,9 @@ class StudentCollection
     }
 }
 
-class Task2
+public class Task2
 {
-    static void Main()
+    public static void Main()
     {
         //Initialize students collection
         var students = new StudentCollection();

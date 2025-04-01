@@ -57,7 +57,7 @@ class Array
     /// </summary>
     double[] InitArrayC(double[] arrayA, double[] arrayB)
     {
-        List<double> listB = arrayA.ToList();
+        List<double> listB = arrayB.ToList();
         int minBIndex = System.Array.IndexOf(arrayB, arrayB.Min()); //Left minimum index of B
         listB.RemoveRange(0, minBIndex + 1); //Prepared B
         
@@ -116,9 +116,9 @@ class Array
     }
 }
 
-class Task1
+public class Task1
 {
-    static void Main()
+    public static void Main()
     {
         //Init MyObject
         Array myObject = new Array();
