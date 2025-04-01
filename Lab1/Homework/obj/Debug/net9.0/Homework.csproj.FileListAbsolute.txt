@@ -1,0 +1,15 @@
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Homework\bin\Debug\net9.0\Homework.exe
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Homework\bin\Debug\net9.0\Homework.deps.json
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Homework\bin\Debug\net9.0\Homework.runtimeconfig.json
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Homework\bin\Debug\net9.0\Homework.dll
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Homework\bin\Debug\net9.0\Homework.pdb
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Homework\obj\Debug\net9.0\Homework.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Homework\obj\Debug\net9.0\Homework.AssemblyInfoInputs.cache
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Homework\obj\Debug\net9.0\Homework.AssemblyInfo.cs
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Homework\obj\Debug\net9.0\Homework.csproj.CoreCompileInputs.cache
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Homework\obj\Debug\net9.0\Homework.sourcelink.json
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Homework\obj\Debug\net9.0\Homework.dll
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Homework\obj\Debug\net9.0\refint\Homework.dll
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Homework\obj\Debug\net9.0\Homework.pdb
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Homework\obj\Debug\net9.0\Homework.genruntimeconfig.cache
+C:\Users\georg\Documents\Git\KoptevLabs\Lab1\Homework\obj\Debug\net9.0\ref\Homework.dll
