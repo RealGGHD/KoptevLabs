@@ -121,7 +121,7 @@ class Array
     {
         List<double> listB = arrayB.ToList();
         int minBIndex = System.Array.IndexOf(arrayB, arrayB.Min()); //Left minimum index of B
-        listB.RemoveRange(0, minBIndex + 1); //Prepared B
+        listB.RemoveRange(0, minBIndex + 1); //Prepared B, +1 because remove everything right from min include it 
         
         Console.Write("Write index for array C: ");
         string? input = Console.ReadLine(); //InputIndex
@@ -135,16 +135,16 @@ class Array
         int minAIndex = System.Array.LastIndexOf(arrayA, arrayA.Min()); //Right minimum index of A
         if (inputIndex > minAIndex)
         {
-            listA = listA.GetRange(minAIndex + 1, inputIndex - 1);
+            listA = listA.GetRange(minAIndex + 1, inputIndex - 1); //Range from Min to Input 
         } else if (inputIndex < minAIndex)
         {
-            listA = listA.GetRange(inputIndex + 1, minAIndex - 1);
+            listA = listA.GetRange(inputIndex + 1, minAIndex - 1); //Range from Input to Min
         }
         else
         {
-            return listB.ToArray();
+            return listB.ToArray(); //Return range without A
         }
-        return listB.Concat(listA).ToArray(); //Return ArrayC
+        return listB.Concat(listA).ToArray(); //Return range with B + A
     }
     /// <summary>
     /// The sum of positive elements after the second maximum
