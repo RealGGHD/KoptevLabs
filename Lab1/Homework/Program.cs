@@ -5,7 +5,7 @@ class Program
     /// <summary>
     /// Run program
     /// </summary>
-    static void Main(string[] args)
+    static void Main()
     {
         while (true)
         {
