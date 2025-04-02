@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\georg\\Documents\\Git\\KoptevLabs\\Lab1\\Homework\\Homework.csproj",
-      "projectName": "Homework",
-      "projectPath": "C:\\Users\\georg\\Documents\\Git\\KoptevLabs\\Lab1\\Homework\\Homework.csproj",
+      "projectUniqueName": "C:\\Users\\georg\\Documents\\Git\\KoptevLabs\\Lab1\\HW1\\HW1.csproj",
+      "projectName": "HW1",
+      "projectPath": "C:\\Users\\georg\\Documents\\Git\\KoptevLabs\\Lab1\\HW1\\HW1.csproj",
       "packagesPath": "C:\\Users\\georg\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\georg\\Documents\\Git\\KoptevLabs\\Lab1\\Homework\\obj\\",
+      "outputPath": "C:\\Users\\georg\\Documents\\Git\\KoptevLabs\\Lab1\\HW1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\georg\\AppData\\Roaming\\NuGet\\NuGet.Config"

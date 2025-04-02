@@ -1,4 +1,20 @@
-﻿namespace Homework;
+﻿namespace HW1;
+public class TaskTwo
+{
+    public static void Run()
+    {
+        //Initialize students actions
+        var students = new StudentAction();
+        //Read students data from console
+        students.ReadStudents();
+        //Sorted students by alphabet
+        students.SortedStudents();
+        //Amount of failing students
+        students.FailingStudents();
+        //Excellent students in each group
+        students.ExcellentByGroups();
+    }
+}
 
 class Student
 {
