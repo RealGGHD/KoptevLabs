@@ -2,11 +2,14 @@
 
 class Run
 {
+    /// <summary>
+    /// Run program
+    /// </summary>
     static void Main()
     {
         Console.Write("Enter your name for new bank account: ");
         string name = Input();
-        BankAccount bankAccount = new BankAccount(name);
+        BankAccount task1 = new BankAccount(name);
         Console.WriteLine("Congratulations, you have a new bank account!");
         
         while (true)
@@ -17,20 +20,23 @@ class Run
             if (action == 1)
             {
                 Console.Write("Enter amount for deposit: ");
-                bankAccount.Deposit(decimal.Parse(Input()));
+                task1.Deposit(decimal.Parse(Input()));
             } 
             else if (action == 2)
             {
                 Console.Write("Enter amount for withdraw: ");
-                bankAccount.Withdraw(decimal.Parse(Input()));
+                task1.Withdraw(decimal.Parse(Input()));
             }
             else if (action == 3)
             {
-                bankAccount.GetAccountInfo();
+                task1.GetAccountInfo();
             }
         }
     }
-    static string Input()
+    /// <summary>
+    /// Input check
+    /// </summary>
+    public static string Input()
     {
         string input = Console.ReadLine();
         if (string.IsNullOrEmpty(input))
