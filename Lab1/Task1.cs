@@ -14,9 +14,9 @@ public class Task1
         //Print Array C
         arrayC.PrintArray("Array C: ");
         // Calculate A, B and C
-        double a = arrayA.CalcLetters();
-        double b = arrayB.CalcLetters();
-        double c = arrayC.CalcLetters();
+        double a = arrayA.CalcLetter();
+        double b = arrayB.CalcLetter();
+        double c = arrayC.CalcLetter();
         //Print A, B and C
         Console.WriteLine($"\nA: {a}, B: {b}, C: {c}");
         // Calculate result
@@ -99,16 +99,16 @@ class Arrays
     /// <summary>
     /// The sum of positive elements after the second maximum
     ///  </summary>
-    public double CalcLetters()
+    public double CalcLetter()
     {
         var uniqueValues = GsArray.Distinct().OrderByDescending(x => x).ToList(); //Unique sort from max to min
         if (uniqueValues.Count < 2)
         {
             throw new InvalidOperationException("Not enough elements in array!");
         }
-        int secondMax = uniqueValues[1]; //Second Max
-        int secondMaxIndex = Array.IndexOf(GsArray, secondMax);
-        double letter = GsArray.Skip(secondMaxIndex + 1).Where(x => x > 0).Sum();
+        int secondMax = uniqueValues[1]; //Take Second Max
+        int secondMaxIndex = Array.IndexOf(GsArray, secondMax); //Find Second Max Index
+        double letter = GsArray.Skip(secondMaxIndex + 1).Where(x => x > 0).Sum(); //Sum of positive elements after second max
         return letter;
     }
     /// <summary>
@@ -116,7 +116,7 @@ class Arrays
     /// </summary>
     public static void CalcFunction(double a, double b, double c)
     {
-        double result = (2.0 * Math.Sin(a)) + (3.0 * b * Math.Pow(Math.Cos(c), 3)) / (a + b);
+        double result = (2.0 * Math.Sin(a)) + (3.0 * b * Math.Pow(Math.Cos(c), 3)) / (a + b); //Calc function
         Console.WriteLine($"Result: {result}");
     }
 }
