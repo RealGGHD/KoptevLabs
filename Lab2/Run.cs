@@ -1,4 +1,5 @@
-﻿namespace Lab2;
+﻿//1 variant
+namespace Lab2;
 
 class Run
 {
@@ -7,6 +8,20 @@ class Run
     /// </summary>
     static void Main()
     {
-        Task1.Run();
+        while (true)
+        {
+            Console.Write("Choose task (1): ");
+            string? input = Console.ReadLine();
+            if (string.IsNullOrEmpty(input))
+            {
+                throw new Exception("Error: Invalid input!");
+            }
+
+            int task = int.Parse(input);
+            if (task == 1)
+            {
+                Task1.Run();
+            }
+        }
     }
 }
