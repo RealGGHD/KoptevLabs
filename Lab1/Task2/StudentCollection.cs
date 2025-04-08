@@ -1,4 +1,5 @@
-﻿namespace Lab1;
+﻿//1 variant
+namespace Lab1.Task2;
 class StudentCollection
 {
     ////Init private field

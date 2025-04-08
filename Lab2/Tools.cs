@@ -1,7 +1,6 @@
 ﻿//1 variant
-using Lab2.Task1;
 namespace Lab2;
-
+using Lab2.Task1;
 class Tools
 {
     /// <summary>

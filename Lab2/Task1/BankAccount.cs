@@ -1,5 +1,5 @@
-﻿namespace Lab2.Task1;
-
+﻿//1 variant
+namespace Lab2.Task1;
 public class BankAccount
 {
     //Init private fields

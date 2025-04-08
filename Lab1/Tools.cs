@@ -1,5 +1,7 @@
 ﻿//1 variant
 namespace Lab1;
+using Lab1.Task1;
+using Lab1.Task2;
 class Tools
 {
     /// <summary>

@@ -1,5 +1,5 @@
-﻿namespace Lab1;
-
+﻿//1 variant
+namespace Lab1.Task1;
 class Arrayy
 {
     //Init private fields
