@@ -20,7 +20,6 @@ class Arrays
         {
             throw new Exception("Error: Invalid input!");
         }
-
         return input;
     }
     /// <summary>

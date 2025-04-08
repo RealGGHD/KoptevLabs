@@ -11,20 +11,10 @@ class Run
         {
             Console.Write("Choose task (1/2): ");
             string? input = Console.ReadLine();
-            if (string.IsNullOrEmpty(input))
-            {
-                throw new Exception("Error: Invalid input!");
-            }
-
+            if (string.IsNullOrEmpty(input)) throw new Exception("Error: Invalid input!");
             int task = int.Parse(input);
-            if (task == 1)
-            {
-                Arrays.Run();
-            }
-            else if (task == 2)
-            {
-                StudentCollection.Run();
-            }
+            if (task == 1) Arrays.Run();
+            else if (task == 2) StudentCollection.Run();
         }
     }
 }
