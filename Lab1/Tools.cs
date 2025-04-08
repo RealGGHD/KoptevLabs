@@ -1,6 +1,6 @@
 ﻿//1 variant
 namespace Lab1;
-class Run
+class Tools
 {
     /// <summary>
     /// Run program
@@ -9,10 +9,7 @@ class Run
     {
         while (true)
         {
-            Console.Write("Choose task (1/2): ");
-            string? input = Console.ReadLine();
-            if (string.IsNullOrEmpty(input)) throw new Exception("Error: Invalid input!");
-            int task = int.Parse(input);
+            int task = int.Parse(Input("Choose task (1/2): "));
             if (task == 1) FirstRun();
             else if (task == 2) SecondRun();
         }
@@ -56,5 +53,15 @@ class Run
         task.FailingStudents();
         //Excellent students in each group
         task.ExcellentByGroups();
+    }
+    /// <summary>
+    /// Input and verification
+    /// </summary>
+    public static string Input(string message)
+    {
+        Console.Write(message);
+        string? input = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(input)) throw new Exception("Error: Invalid input!");
+        return input;
     }
 }

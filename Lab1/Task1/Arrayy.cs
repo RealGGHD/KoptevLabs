@@ -13,24 +13,12 @@ class Arrayy
         get => _array;
         set => _array = value;
     }
-
-    /// <summary>
-    /// Input and verification
-    /// </summary>
-    public static string Input(string message)
-    {
-        Console.Write(message);
-        string? input = Console.ReadLine();
-        if (string.IsNullOrWhiteSpace(input)) throw new Exception("Error: Invalid input!");
-        return input;
-    }
-
     /// <summary>
     /// Initialize array A or B
     /// </summary>
     public void InitArray(string name)
     {
-        string[] values = Input($"Write array {name}: ").Split(' ');
+        string[] values = Tools.Input($"Write array {name}: ").Split(' ');
         GsArray = Array.ConvertAll(values, int.Parse);
     }
 
@@ -45,7 +33,7 @@ class Arrayy
         int[] subArrayB = arrayB[(afterMinBIndex)..]; //All elements after minimun
         //All elements of Array A between right min element and input element
         int minAIndex = Array.LastIndexOf(arrayA, arrayA.Min()); //Index of min in array a
-        int inputIndex = int.Parse(Input("Write index for array C: "));
+        int inputIndex = int.Parse(Tools.Input("Write index for array C: "));
 
         if (inputIndex == minAIndex) //If minIndex == InputIndex -> ArrayC = ArrayB;
         {
@@ -87,15 +75,13 @@ class Arrayy
     public double CalcLetter()
     {
         var uniqueValues = GsArray.Distinct().OrderByDescending(x => x).ToList(); //Unique sort from max to min
-        if (uniqueValues.Count < MinimumUniqueNumbers)
-            throw new InvalidOperationException("Not enough elements in array!");
+        if (uniqueValues.Count < MinimumUniqueNumbers) throw new InvalidOperationException("Not enough elements in array!");
         int secondMax = uniqueValues[1]; //Take Second Max
         int secondMaxIndex = Array.IndexOf(GsArray, secondMax); //Find Second Max Index
         int amountForSkip = secondMaxIndex + 1; //Amount for skip
         double letter = GsArray.Skip(amountForSkip).Where(x => x > 0).Sum(); //Sum of positive elements after second max
         return letter;
     }
-
     /// <summary>
     /// Calculate function
     /// </summary>

@@ -11,26 +11,16 @@ class StudentCollection
     public void ReadStudents()
     {
         //Input number of students
-        Console.Write("How many students: ");
-        string? input = Console.ReadLine();
-        if (string.IsNullOrEmpty(input)) throw new Exception("Error: Invalid input!");
-        int count = int.Parse(input);
+        int count = int.Parse(Tools.Input("How many students: "));
         //Number of students
         for (int i = 0; i < count; i++)
         {
             //Input surname
-            Console.Write("Write surname: ");
-            string? surname = Console.ReadLine();
-            if (string.IsNullOrEmpty(surname)) throw new Exception("Error: Invalid surname!");
+            string surname = Tools.Input("Write surname: ");
             //Input group number
-            Console.Write("Write group number: ");
-            string? groupNumber = Console.ReadLine();
-            if (string.IsNullOrEmpty(groupNumber)) throw new Exception("Error: Invalid group number!");
-            int group = int.Parse(groupNumber);
+            int group = int.Parse(Tools.Input("Write group number: "));
             //Input grades
-            Console.Write("Write grades (Like: 1 2 3 4 5): ");
-            string? gradesInput = Console.ReadLine();
-            if (string.IsNullOrEmpty(gradesInput)) throw new Exception("Error: Invalid grades!");
+            string gradesInput = Tools.Input("Write grades (Like: 1 2 3 4 5): ");
             int[] grades = gradesInput.Split(' ').Select(int.Parse).ToArray();
             //Add student to collection
             _students.Add(new Student(surname, group, grades));
