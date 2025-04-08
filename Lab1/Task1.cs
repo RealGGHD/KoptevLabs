@@ -1,28 +1,4 @@
 ﻿namespace Lab1;
-public class Task1
-{
-    public static void Run()
-    {
-        //Initialize array
-        Arrays arrayA = new();
-        Arrays arrayB = new();
-        Arrays arrayC = new();
-        //Insert data in Arrays
-        arrayA.InitArray("A");
-        arrayB.InitArray("B");
-        arrayC.InitArrayC(arrayA.GsArray, arrayB.GsArray);
-        //Print Array C
-        arrayC.PrintArray("Array C: ");
-        // Calculate A, B and C
-        double a = arrayA.CalcLetter();
-        double b = arrayB.CalcLetter();
-        double c = arrayC.CalcLetter();
-        //Print A, B and C
-        Console.WriteLine($"\nA: {a}, B: {b}, C: {c}");
-        // Calculate result
-        Arrays.CalcFunction(a, b, c);
-    }
-}
 class Arrays
 {
     //Init private fields
@@ -118,5 +94,29 @@ class Arrays
     {
         double result = (2.0 * Math.Sin(a)) + (3.0 * b * Math.Pow(Math.Cos(c), 3)) / (a + b); //Calc function
         Console.WriteLine($"Result: {result}");
+    }
+    /// <summary>
+    /// Run program
+    /// </summary>
+    public static void Run()
+    {
+        //Initialize array
+        Arrays arrayA = new();
+        Arrays arrayB = new();
+        Arrays arrayC = new();
+        //Insert data in Arrays
+        arrayA.InitArray("A");
+        arrayB.InitArray("B");
+        arrayC.InitArrayC(arrayA.GsArray, arrayB.GsArray);
+        //Print Array C
+        arrayC.PrintArray("Array C: ");
+        // Calculate A, B and C
+        double a = arrayA.CalcLetter();
+        double b = arrayB.CalcLetter();
+        double c = arrayC.CalcLetter();
+        //Print A, B and C
+        Console.WriteLine($"\nA: {a}, B: {b}, C: {c}");
+        // Calculate result
+        Arrays.CalcFunction(a, b, c);
     }
 }

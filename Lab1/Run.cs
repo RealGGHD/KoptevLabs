@@ -19,11 +19,11 @@ class Run
             int task = int.Parse(input);
             if (task == 1)
             {
-                Task1.Run();
+                Arrays.Run();
             }
             else if (task == 2)
             {
-                Task2.Run();
+                StudentCollection.Run();
             }
         }
     }

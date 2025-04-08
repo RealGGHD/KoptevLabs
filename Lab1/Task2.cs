@@ -1,71 +1,62 @@
 ﻿namespace Lab1;
-public class Task2
+class StudentCollection
 {
-    public static void Run()
+    //SubClass of one Student
+    private class Student
     {
-        //Initialize students actions
-        var students = new StudentAction();
-        //Read students data from console
-        students.ReadStudents();
-        //Sorted students by alphabet
-        students.SortedStudents();
-        //Amount of failing students
-        students.FailingStudents();
-        //Excellent students in each group
-        students.ExcellentByGroups();
+        //Init private fields
+        private string _surname;
+        private int _groupNumber;
+        private int[] _grades;
+        //Get private fields
+        public string Surname => _surname;
+        public int GroupNumber => _groupNumber;
+        public int[] Grades => _grades;
+        /// <summary>
+        /// Indexer to get grades 
+        /// </summary>
+        public int this[int index]
+        {
+            get => _grades[index];
+            set => _grades[index] = value;
+        }
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public Student(string surname, int groupNumber, int[] grades)
+        {
+            _surname = surname;
+            _groupNumber = groupNumber;
+            _grades = grades;
+        }
     }
-}
-
-class Student
-{
-    //Init private fields
-    private string _surname;
-    private int _groupNumber;
-    private int[] _grades;
-    //Get private fields
-    public string Surname => _surname;
-    public int GroupNumber => _groupNumber;
-    public int[] Grades => _grades;
-    /// <summary>
-    /// Indexer to get grades 
-    /// </summary>
-    public int this[int index]
-    {
-        get => _grades[index];
-        set => _grades[index] = value;
-    }
-    /// <summary>
-    /// Constructor
-    /// </summary>
-    public Student(string surname, int groupNumber, int[] grades)
-    {
-        _surname = surname;
-        _groupNumber = groupNumber;
-        _grades = grades;
-    }
-}
-class StudentAction
-{
-    //Init private fields
+    ////Init private field
     private List<Student> _students = new List<Student>();
     /// <summary>
-    /// Constructor to initialize an empty student collection
+    /// Run program
     /// </summary>
-    public StudentAction()
+    public static void Run()
     {
+        //Initialize students collection
+        var task = new StudentCollection();
+        //Read students data from console
+        task.ReadStudents();
+        //Sorted students by alphabet
+        task.SortedStudents();
+        //Amount of failing students
+        task.FailingStudents();
+        //Excellent students in each group
+        task.ExcellentByGroups();
     }
     /// <summary>
     /// Initialize and insert all students in array
     /// </summary>
-    public void ReadStudents()
+    private void ReadStudents()
     {
         //Input number of students
         Console.Write("How many students: ");
         string? input = Console.ReadLine();
-        if (string.IsNullOrEmpty(input))
-        {
-            throw new Exception("Error: Invalid input!");
-        }
+        if (string.IsNullOrEmpty(input)) throw new Exception("Error: Invalid input!");
         int count = int.Parse(input);
         //Number of students
         for (int i = 0; i < count; i++)
@@ -73,25 +64,16 @@ class StudentAction
             //Input surname
             Console.Write("Write surname: ");
             string? surname = Console.ReadLine();
-            if (string.IsNullOrEmpty(surname))
-            {
-                throw new Exception("Error: Invalid surname!");
-            }
+            if (string.IsNullOrEmpty(surname)) throw new Exception("Error: Invalid surname!");
             //Input group number
             Console.Write("Write group number: ");
             string? groupNumber = Console.ReadLine();
-            if (string.IsNullOrEmpty(groupNumber))
-            {
-                throw new Exception("Error: Invalid group number!");
-            }
+            if (string.IsNullOrEmpty(groupNumber)) throw new Exception("Error: Invalid group number!");
             int group = int.Parse(groupNumber);
             //Input grades
             Console.Write("Write grades (Like: 1 2 3 4 5): ");
             string? gradesInput = Console.ReadLine();
-            if (string.IsNullOrEmpty(gradesInput))
-            {
-                throw new Exception("Error: Invalid grades!");
-            }
+            if (string.IsNullOrEmpty(gradesInput)) throw new Exception("Error: Invalid grades!");
             int[] grades = gradesInput.Split(' ').Select(int.Parse).ToArray();
             //Add student to collection
             _students.Add(new Student(surname, group, grades));
@@ -100,55 +82,43 @@ class StudentAction
     /// <summary>
     /// Print students sorted by surname
     /// </summary>
-    public void SortedStudents()
+    private void SortedStudents()
     {
         Console.WriteLine("\nSorted students:");
         var sortedStudents = _students.OrderBy(student => student.Surname);
         foreach (var student in sortedStudents)
         {
-            string grades = string.Join(", ", student.Grades);
-            Console.WriteLine($"{student.Surname} | {student.GroupNumber} | {grades}");
+            Console.WriteLine($"{student.Surname} | {student.GroupNumber} | {string.Join(", ", student.Grades)}");
         }
     }
     /// <summary>
     /// Print number of failing students
     /// </summary>
-    public void FailingStudents()
+    private void FailingStudents()
     {
-        int count = 0;
-        foreach (var student in _students)
-        {
-            foreach (var grade in student.Grades)
-            {
-                if (grade == 2)
-                {
-                    count++;
-                    break;
-                }
-            }
-        }
+        int count = _students.Count(student => student.Grades.Any(grade => grade == 2));
         Console.WriteLine($"\nFailing students: {count}");
     }
     /// <summary>
     /// Excellent students in each group
     /// </summary>
-    public void ExcellentByGroups()
+    private void ExcellentByGroups()
     {
-        var groups = _students.GroupBy(student => student.GroupNumber); //Sort by groups
+        var groups = _students.GroupBy(student => student.GroupNumber);
         foreach (var group in groups)
         {
             var excellentStudents = group.Where(student => student.Grades.All(grade => grade == 5)).ToList();
             Console.WriteLine($"Excellent in group {group.Key}:");
-            if (excellentStudents.Any())
+            if (excellentStudents.Count == 0)
             {
-                foreach (var excellentStudent in excellentStudents)
-                {
-                    Console.WriteLine($"{excellentStudent.Surname} | {excellentStudent.GroupNumber} | {String.Join(", ",excellentStudent.Grades)}");
-                }
+                Console.WriteLine("No excellent in group.");
             }
             else
             {
-                Console.WriteLine("No excellent in group.");
+                foreach (var student in excellentStudents)
+                {
+                    Console.WriteLine($"{student.Surname} | {student.GroupNumber} | {string.Join(", ", student.Grades)}");
+                }
             }
         }
     }
