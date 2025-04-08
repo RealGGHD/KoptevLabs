@@ -3,6 +3,7 @@ class Arrays
 {
     //Init private fields
     private int[] _array;
+    private const int MinimumUniqueNumbers = 2;
     //GsArray = Get and set array
     public int[] GsArray
     {
@@ -35,29 +36,33 @@ class Arrays
     /// </summary>
     public void InitArrayC(int[] arrayA, int[] arrayB)
     {
+        //All elements of Array B after left Max
         int minBIndex = Array.IndexOf(arrayB, arrayB.Min()); //Index of min in array b
-        int[] subArrayB = arrayB[(minBIndex + 1)..]; //All elements after minimun
-
+        int afterMinBIndex = minBIndex + 1;
+        int[] subArrayB = arrayB[(afterMinBIndex)..]; //All elements after minimun
+        //All elements of Array A between right min element and input element
         int minAIndex = Array.LastIndexOf(arrayA, arrayA.Min()); //Index of min in array a
         int inputIndex = int.Parse(Input("Write index for array C: "));
 
         if (inputIndex == minAIndex) //If minIndex == InputIndex -> ArrayC = ArrayB;
         {
-            GsArray = subArrayB;
+            GsArray = subArrayB; //Only Array B
             return;
         }
         
-        int start = Math.Min(inputIndex, minAIndex) + 1; //find start index in subArrayA
-        int count = Math.Abs(inputIndex - minAIndex) - 1; //the number of elements in subArrayA
+        int startIndex = Math.Min(inputIndex, minAIndex) + 1; //find start index in subArrayA
+        int endIndex = Math.Max(inputIndex, minAIndex); //find end index in subArrayA
 
         int[] subArrayA;
-        if (count > 0)
+        if (startIndex < endIndex)
         {
-            int arrayLength = start + count; //length of subArrayA
-            subArrayA = arrayA[start..(arrayLength)];
+            subArrayA = arrayA[startIndex..endIndex];
         }
-        else subArrayA = [];
-
+        else
+        {
+            subArrayA = [];
+        }
+        
         GsArray = subArrayB.Concat(subArrayA).ToArray();
     }
     /// <summary>
@@ -77,13 +82,11 @@ class Arrays
     public double CalcLetter()
     {
         var uniqueValues = GsArray.Distinct().OrderByDescending(x => x).ToList(); //Unique sort from max to min
-        if (uniqueValues.Count < 2)
-        {
-            throw new InvalidOperationException("Not enough elements in array!");
-        }
+        if (uniqueValues.Count < MinimumUniqueNumbers) throw new InvalidOperationException("Not enough elements in array!");
         int secondMax = uniqueValues[1]; //Take Second Max
         int secondMaxIndex = Array.IndexOf(GsArray, secondMax); //Find Second Max Index
-        double letter = GsArray.Skip(secondMaxIndex + 1).Where(x => x > 0).Sum(); //Sum of positive elements after second max
+        int amountForSkip = secondMaxIndex + 1; //Amount for skip
+        double letter = GsArray.Skip(amountForSkip).Where(x => x > 0).Sum(); //Sum of positive elements after second max
         return letter;
     }
     /// <summary>

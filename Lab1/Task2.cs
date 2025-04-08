@@ -32,6 +32,8 @@ class StudentCollection
     }
     ////Init private field
     private List<Student> _students = new List<Student>();
+    private const int HighestGrade = 5;
+    private const int LowestGrade = 2;
     /// <summary>
     /// Run program
     /// </summary>
@@ -96,7 +98,7 @@ class StudentCollection
     /// </summary>
     private void FailingStudents()
     {
-        int count = _students.Count(student => student.Grades.Any(grade => grade == 2));
+        int count = _students.Count(student => student.Grades.Any(grade => grade == LowestGrade));
         Console.WriteLine($"\nFailing students: {count}");
     }
     /// <summary>
@@ -107,7 +109,7 @@ class StudentCollection
         var groups = _students.GroupBy(student => student.GroupNumber);
         foreach (var group in groups)
         {
-            var excellentStudents = group.Where(student => student.Grades.All(grade => grade == 5)).ToList();
+            var excellentStudents = group.Where(student => student.Grades.All(grade => grade == HighestGrade)).ToList();
             Console.WriteLine($"Excellent in group {group.Key}:");
             if (excellentStudents.Count == 0)
             {
