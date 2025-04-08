@@ -1,59 +1,14 @@
 ﻿namespace Lab1;
 class StudentCollection
 {
-    //SubClass of one Student
-    private class Student
-    {
-        //Init private fields
-        private string _surname;
-        private int _groupNumber;
-        private int[] _grades;
-        //Get private fields
-        public string Surname => _surname;
-        public int GroupNumber => _groupNumber;
-        public int[] Grades => _grades;
-        /// <summary>
-        /// Indexer to get grades 
-        /// </summary>
-        public int this[int index]
-        {
-            get => _grades[index];
-            set => _grades[index] = value;
-        }
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public Student(string surname, int groupNumber, int[] grades)
-        {
-            _surname = surname;
-            _groupNumber = groupNumber;
-            _grades = grades;
-        }
-    }
     ////Init private field
     private List<Student> _students = new List<Student>();
     private const int HighestGrade = 5;
     private const int LowestGrade = 2;
     /// <summary>
-    /// Run program
-    /// </summary>
-    public static void Run()
-    {
-        //Initialize students collection
-        var task = new StudentCollection();
-        //Read students data from console
-        task.ReadStudents();
-        //Sorted students by alphabet
-        task.SortedStudents();
-        //Amount of failing students
-        task.FailingStudents();
-        //Excellent students in each group
-        task.ExcellentByGroups();
-    }
-    /// <summary>
     /// Initialize and insert all students in array
     /// </summary>
-    private void ReadStudents()
+    public void ReadStudents()
     {
         //Input number of students
         Console.Write("How many students: ");
@@ -84,7 +39,7 @@ class StudentCollection
     /// <summary>
     /// Print students sorted by surname
     /// </summary>
-    private void SortedStudents()
+    public void SortedStudents()
     {
         Console.WriteLine("\nSorted students:");
         var sortedStudents = _students.OrderBy(student => student.Surname);
@@ -96,7 +51,7 @@ class StudentCollection
     /// <summary>
     /// Print number of failing students
     /// </summary>
-    private void FailingStudents()
+    public void FailingStudents()
     {
         int count = _students.Count(student => student.Grades.Any(grade => grade == LowestGrade));
         Console.WriteLine($"\nFailing students: {count}");
@@ -104,7 +59,7 @@ class StudentCollection
     /// <summary>
     /// Excellent students in each group
     /// </summary>
-    private void ExcellentByGroups()
+    public void ExcellentByGroups()
     {
         var groups = _students.GroupBy(student => student.GroupNumber);
         foreach (var group in groups)
