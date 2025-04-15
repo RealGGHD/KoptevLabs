@@ -9,18 +9,24 @@ public class BankAccount
     private const int MaxValue = int.MaxValue;
     Random random = new Random();
     /// <summary>
-    /// Get and set properties
+    /// OwnerName cannot be a space or null
     /// </summary>
     public string OwnerName
     {
         get => _ownerName;
         set => _ownerName = string.IsNullOrWhiteSpace(value) ? throw new Exception("Input cannot be empty!") : value;
     }
+    /// <summary>
+    /// Balance cannot be less than 0
+    /// </summary>
     public decimal Balance
     {
         get => _balance;
         set => _balance = value < Zero ? Zero : value;
     }
+    /// <summary>
+    /// AccountNumber cannot be larger than MaxValue
+    /// </summary>
     public int AccountNumber
     {
         get => _accountNumber;

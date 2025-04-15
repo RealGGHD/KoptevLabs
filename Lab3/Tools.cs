@@ -14,7 +14,8 @@ class Tools
             string input = Input("Write the name of animal (Lion/Elephant/Bird): ").Trim();
             if (Enum.TryParse(input, IgnoreRegister, out Animal.AnimalType type))
             {
-                Animal.Create(type).MakeSound();
+                Animal ourAnimal = Animal.Create(type);
+                ourAnimal.MakeSound();
             }
             else
             {
