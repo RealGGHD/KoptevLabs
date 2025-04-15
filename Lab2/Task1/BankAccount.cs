@@ -2,14 +2,14 @@
 namespace Lab2.Task1;
 public class BankAccount
 {
-    //Init private fields
     private int _accountNumber;
     private string _ownerName;
     private decimal _balance;
     const int Zero = 0;
-    //Add random
     Random random = new Random();
-    //Get and set properties
+    /// <summary>
+    /// Get and set properties
+    /// </summary>
     public string OwnerName
     {
         get => _ownerName;
@@ -18,13 +18,14 @@ public class BankAccount
     public decimal Balance
     {
         get => _balance;
+        set => _balance = value < 0 ? 0 : value;
     }
     /// <summary>
     /// Constructor
     /// </summary>
     public BankAccount(string input)
     {
-        _accountNumber = random.Next(Zero, int.MaxValue); //From zero to int.MaxValue
+        _accountNumber = random.Next(Zero, int.MaxValue);
         OwnerName = input;
     }
     /// <summary>
@@ -32,22 +33,23 @@ public class BankAccount
     /// </summary>
     public void Deposit(decimal amount)
     {
-        _balance += amount;
-        Console.WriteLine($"{_ownerName} deposited {amount} to {_accountNumber}.");
+        Balance += amount;
+        Console.WriteLine($"{OwnerName} deposited {amount} to {_accountNumber}.");
     }
     /// <summary>
     /// Withdraw money from account
+    /// Check for low balance
     /// </summary>
     public void Withdraw(decimal amount)
     {
-        if (_balance - amount < Zero) //if withdraw more than actual balance
+        if (Balance - amount < Zero)
         {
             Console.WriteLine("Error: Not enough money to withdraw.");
         }
         else
         {
-            _balance -= amount;
-            Console.WriteLine($"{_ownerName} withdrawn {amount} from {_accountNumber}.");
+            Balance -= amount;
+            Console.WriteLine($"{OwnerName} withdrawn {amount} from {_accountNumber}.");
         }
     }
     /// <summary>
@@ -55,7 +57,7 @@ public class BankAccount
     /// </summary>
     public void GetAccountInfo()
     {
-        Console.WriteLine($"Account {_accountNumber} belongs to {_ownerName}.");
-        Console.WriteLine($"Balance: {_balance}.");
+        Console.WriteLine($"Account {_accountNumber} belongs to {OwnerName}.");
+        Console.WriteLine($"Balance: {Balance}.");
     }
 }
