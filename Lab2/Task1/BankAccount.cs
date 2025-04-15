@@ -6,6 +6,7 @@ public class BankAccount
     private string _ownerName;
     private decimal _balance;
     const int Zero = 0;
+    const int MaxValue = int.MaxValue;
     Random random = new Random();
     /// <summary>
     /// Get and set properties
@@ -25,7 +26,7 @@ public class BankAccount
     /// </summary>
     public BankAccount(string input)
     {
-        _accountNumber = random.Next(Zero, int.MaxValue);
+        _accountNumber = random.Next(Zero, MaxValue);
         OwnerName = input;
     }
     /// <summary>
