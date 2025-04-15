@@ -70,7 +70,7 @@ class Arrayy
     public double CalcLetter()
     {
         var uniqueValues = GsArray.Distinct().OrderByDescending(x => x).ToList(); //Unique sort from max to min
-        if (uniqueValues.Count < MinimumUniqueNumbers) throw new InvalidOperationException("Not enough elements in array!");
+        if (uniqueValues.Count < MinimumUniqueNumbers) throw new Exception("Not enough elements in array!");
         int secondMax = uniqueValues[1]; //Take Second Max
         int secondMaxIndex = Array.IndexOf(GsArray, secondMax); //Find Second Max Index
         int amountForSkip = secondMaxIndex + 1; //Amount for skip
