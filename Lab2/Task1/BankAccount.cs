@@ -21,7 +21,6 @@ public class BankAccount
         get => _balance;
         set => _balance = value < Zero ? Zero : value;
     }
-
     public int AccountNumber
     {
         get => _accountNumber;
