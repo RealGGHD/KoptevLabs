@@ -15,12 +15,14 @@ class Tools
             string action = Input("\nChoose action (Deposit/Withdraw/Information): ");
             if (action == "Deposit")
             {
-                decimal amount = decimal.Parse(Input("Enter amount for deposit: "));
+                string input = Input("Enter your amount for deposit: ");
+                decimal amount = decimal.Parse(input);
                 bankAccount.Deposit(amount);
             }
             else if (action == "Withdraw")
             {
-                decimal amount = decimal.Parse(Input("Enter amount for withdraw: "));
+                string input = Input("Enter your amount for withdraw: ");
+                decimal amount = decimal.Parse(input);
                 bankAccount.Withdraw(amount);
             }
             else if (action == "Information")

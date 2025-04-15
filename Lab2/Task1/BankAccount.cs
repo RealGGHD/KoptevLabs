@@ -5,8 +5,8 @@ public class BankAccount
     private int _accountNumber;
     private string _ownerName;
     private decimal _balance;
-    const int Zero = 0;
-    const int MaxValue = int.MaxValue;
+    private const int Zero = 0;
+    private const int MaxValue = int.MaxValue;
     Random random = new Random();
     /// <summary>
     /// Get and set properties

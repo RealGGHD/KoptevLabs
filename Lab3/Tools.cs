@@ -29,7 +29,10 @@ class Tools
     {
         Console.Write(message);
         string? input = Console.ReadLine();
-        if (string.IsNullOrWhiteSpace(input)) throw new Exception("Error: Invalid input!");
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            throw new Exception("Error: Invalid input!");
+        }
         return input;
     }
 }
