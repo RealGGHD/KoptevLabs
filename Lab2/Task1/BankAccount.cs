@@ -18,7 +18,7 @@ public class BankAccount
     public decimal Balance
     {
         get => _balance;
-        set => _balance = value < 0 ? 0 : value;
+        set => _balance = value < Zero ? Zero : value;
     }
     /// <summary>
     /// Constructor
