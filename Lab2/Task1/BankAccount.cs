@@ -6,6 +6,7 @@ public class BankAccount
     private int _accountNumber;
     private string _ownerName;
     private decimal _balance;
+    private int _zero = 0;
     //Add random
     Random random = new Random();
     //Get and set properties
@@ -23,7 +24,7 @@ public class BankAccount
     /// </summary>
     public BankAccount(string input)
     {
-        _accountNumber = random.Next(0, int.MaxValue);
+        _accountNumber = random.Next(_zero, int.MaxValue); //From zero to int.MaxValue
         OwnerName = input;
     }
     /// <summary>
@@ -39,7 +40,7 @@ public class BankAccount
     /// </summary>
     public void Withdraw(decimal amount)
     {
-        if (_balance - amount < 0)
+        if (_balance - amount < _zero) //if withdraw more than actual balance
         {
             Console.WriteLine("Error: Not enough money to withdraw.");
         }
