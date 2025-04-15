@@ -12,7 +12,7 @@ class Tools
         Console.WriteLine("Congratulations, you have a new bank account!");
         while (true)
         { 
-            string action = Input("Choose action (Deposit/Withdraw/Information): ");
+            string action = Input("\nChoose action (Deposit/Withdraw/Information): ");
             if (action == "Deposit")
             {
                 decimal amount = decimal.Parse(Input("Enter amount for deposit: "));
