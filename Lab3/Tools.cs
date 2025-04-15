@@ -1,12 +1,11 @@
 ﻿//1 variant
 namespace Lab3;
 using Task1;
-/// <summary>
-/// Helping instruments for code 
-/// </summary>
 class Tools
 {
-    //Our program
+    /// <summary>
+    /// Run program
+    /// </summary>
     static void Main()
     {
         bool IgnoreRegister = true;
