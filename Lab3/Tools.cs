@@ -1,25 +1,26 @@
 ﻿//1 variant
 namespace Lab3;
 using Task1;
+/// <summary>
+/// Helping instruments for code 
+/// </summary>
 class Tools
 {
-    /// <summary>
-    /// Start program
-    /// </summary>
+    //Our program
     static void Main()
     {
-        //Init animals
-        Animal lion = new Lion();
-        Animal elephant = new Elephant();
-        Animal bird = new Bird();
+        bool IgnoreRegister = true;
         while (true)
         {
-            //Input name of animal
-            string name = Input("Write the name of animal (Lion/Elephant/Bird): ");
-            if (name == "Lion") lion.MakeSound();
-            else if (name == "Elephant") elephant.MakeSound();
-            else if (name == "Bird") bird.MakeSound();
-            else Console.WriteLine("Error: Invalid input!");
+            string input = Input("Write the name of animal (Lion/Elephant/Bird): ").Trim();
+            if (Enum.TryParse(input, IgnoreRegister, out Animal.AnimalType type))
+            {
+                Animal.Create(type).MakeSound();
+            }
+            else
+            {
+                Console.WriteLine("Error: Invalid input!");
+            }
         }
     }
     /// <summary>

@@ -3,11 +3,10 @@ namespace Lab3.Task1;
 class Lion : Animal
 {
     /// <summary>
-    /// Override abstract class
+    /// Make specific sound noise for Lion
     /// </summary>
     public override void MakeSound()
     {
-        //Make specific noise
         Console.WriteLine("Roar!");
     }
 }
