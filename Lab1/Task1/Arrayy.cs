@@ -3,13 +3,13 @@ namespace Lab1.Task1;
 class Arrayy
 {
     //Init private fields
-    private int[] array;
+    private int[] _array;
     private const int MinimumUniqueNumbers = 2;
     //GsArray = Get and set array
     public int[] GsArray
     {
-        get => array;
-        set => array = value;
+        get => _array;
+        set => _array = value;
     }
     /// <summary>
     /// Initialize array A or B
