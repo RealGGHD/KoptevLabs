@@ -3,15 +3,13 @@ namespace Lab1.Task1;
 class Arrayy
 {
     //Init private fields
-    private int[] _array;
-
+    private int[] array;
     private const int MinimumUniqueNumbers = 2;
-
     //GsArray = Get and set array
     public int[] GsArray
     {
-        get => _array;
-        set => _array = value;
+        get => array;
+        set => array = value;
     }
     /// <summary>
     /// Initialize array A or B
@@ -21,7 +19,6 @@ class Arrayy
         string[] values = Tools.Input($"Write array {name}: ").Split(' ');
         GsArray = Array.ConvertAll(values, int.Parse);
     }
-
     /// <summary>
     /// Initialize array C
     /// </summary>
@@ -32,9 +29,9 @@ class Arrayy
         int afterMinBIndex = minBIndex + 1;
         int[] subArrayB = arrayB[(afterMinBIndex)..]; //All elements after minimun
         //All elements of Array A between right min element and input element
-        int minAIndex = Array.LastIndexOf(arrayA, arrayA.Min()); //Index of min in array a
+        int minAIndex = Array.LastIndexOf(arrayA, arrayA.Min()); //Index of min in array a from right
         int inputIndex = int.Parse(Tools.Input("Write index for array C: "));
-
+    
         if (inputIndex == minAIndex) //If minIndex == InputIndex -> ArrayC = ArrayB;
         {
             GsArray = subArrayB; //Only Array B
@@ -56,7 +53,6 @@ class Arrayy
 
         GsArray = subArrayB.Concat(subArrayA).ToArray();
     }
-
     /// <summary>
     /// Print Array
     /// </summary>
@@ -68,7 +64,6 @@ class Arrayy
             Console.Write($"{item} ");
         }
     }
-
     /// <summary>
     /// The sum of positive elements after the second maximum
     ///  </summary>
