@@ -8,8 +8,8 @@ class Tools
     /// </summary>
     static void Main()
     {
-        string name = Input("Enter your name for new bank account: ");
-        BankAccount bankAccount = new BankAccount(name);
+        string UserName = Input("Enter your name for new bank account: ");
+        BankAccount bankAccount = new BankAccount(UserName);
         Console.WriteLine("Congratulations, you have a new bank account!");
         while (true)
         { 
