@@ -21,12 +21,18 @@ public class BankAccount
         get => _balance;
         set => _balance = value < Zero ? Zero : value;
     }
+
+    public int AccountNumber
+    {
+        get => _accountNumber;
+        set => _accountNumber = value < MaxValue ? MaxValue : value;
+    }
     /// <summary>
     /// Constructor
     /// </summary>
     public BankAccount(string input)
     {
-        _accountNumber = random.Next(Zero, MaxValue);
+        AccountNumber = random.Next(Zero, MaxValue);
         OwnerName = input;
     }
     /// <summary>
@@ -35,7 +41,7 @@ public class BankAccount
     public void Deposit(decimal amount)
     {
         Balance += amount;
-        Console.WriteLine($"{OwnerName} deposited {amount} to {_accountNumber}.");
+        Console.WriteLine($"{OwnerName} deposited {amount} to {AccountNumber}.");
     }
     /// <summary>
     /// Withdraw money from account
@@ -50,7 +56,7 @@ public class BankAccount
         else
         {
             Balance -= amount;
-            Console.WriteLine($"{OwnerName} withdrawn {amount} from {_accountNumber}.");
+            Console.WriteLine($"{OwnerName} withdrawn {amount} from {AccountNumber}.");
         }
     }
     /// <summary>
@@ -58,7 +64,7 @@ public class BankAccount
     /// </summary>
     public void GetAccountInfo()
     {
-        Console.WriteLine($"Account {_accountNumber} belongs to {OwnerName}.");
+        Console.WriteLine($"Account {AccountNumber} belongs to {OwnerName}.");
         Console.WriteLine($"Balance: {Balance}.");
     }
 }
