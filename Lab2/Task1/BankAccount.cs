@@ -38,25 +38,25 @@ public class BankAccount
     /// <summary>
     /// Deposit money to account
     /// </summary>
-    public void Deposit(decimal Amount)
+    public void Deposit(decimal amount)
     {
-        Balance += Amount;
-        Console.WriteLine($"{OwnerName} deposited {Amount} to {AccountNumber}.");
+        Balance += amount;
+        Console.WriteLine($"{OwnerName} deposited {amount} to {AccountNumber}.");
     }
     /// <summary>
     /// Withdraw money from account
     /// Check for low balance
     /// </summary>
-    public void Withdraw(decimal Amount)
+    public void Withdraw(decimal amount)
     {
-        if (Balance - Amount < Zero)
+        if (Balance - amount < Zero)
         {
             Console.WriteLine("Error: Not enough money to withdraw.");
         }
         else
         {
-            Balance -= Amount;
-            Console.WriteLine($"{OwnerName} withdrawn {Amount} from {AccountNumber}.");
+            Balance -= amount;
+            Console.WriteLine($"{OwnerName} withdrawn {amount} from {AccountNumber}.");
         }
     }
     /// <summary>
