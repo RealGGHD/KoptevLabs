@@ -7,7 +7,7 @@ abstract class Animal
     /// </summary>
     public abstract void MakeSound();
     /// <summary>
-    /// Possible AnimalType
+    /// Possible type of animal
     /// </summary>
     public enum AnimalType
     {
