@@ -3,27 +3,27 @@ namespace Lab2.Task1;
 public class BankAccount
 {
     //Init private fields
-    private int accountNumber;
-    private string ownerName;
-    private decimal balance;
+    private int _accountNumber;
+    private string _ownerName;
+    private decimal _balance;
     //Add random
     Random random = new Random();
     //Get and set properties
     public string OwnerName
     {
-        get => ownerName;
-        set => ownerName = string.IsNullOrWhiteSpace(value) ? throw new Exception("Input cannot be empty!") : value;
+        get => _ownerName;
+        set => _ownerName = string.IsNullOrWhiteSpace(value) ? throw new Exception("Input cannot be empty!") : value;
     }
     public decimal Balance
     {
-        get => balance;
+        get => _balance;
     }
     /// <summary>
     /// Constructor
     /// </summary>
     public BankAccount(string input)
     {
-        accountNumber = random.Next(0, int.MaxValue);
+        _accountNumber = random.Next(0, int.MaxValue);
         OwnerName = input;
     }
     /// <summary>
@@ -31,22 +31,22 @@ public class BankAccount
     /// </summary>
     public void Deposit(decimal amount)
     {
-        balance += amount;
-        Console.WriteLine($"{ownerName} deposited {amount} to {accountNumber}.");
+        _balance += amount;
+        Console.WriteLine($"{_ownerName} deposited {amount} to {_accountNumber}.");
     }
     /// <summary>
     /// Withdraw money from account
     /// </summary>
     public void Withdraw(decimal amount)
     {
-        if (balance - amount < 0)
+        if (_balance - amount < 0)
         {
             Console.WriteLine("Error: Not enough money to withdraw.");
         }
         else
         {
-            balance -= amount;
-            Console.WriteLine($"{ownerName} withdrawn {amount} from {accountNumber}.");
+            _balance -= amount;
+            Console.WriteLine($"{_ownerName} withdrawn {amount} from {_accountNumber}.");
         }
     }
     /// <summary>
@@ -54,7 +54,7 @@ public class BankAccount
     /// </summary>
     public void GetAccountInfo()
     {
-        Console.WriteLine($"Account {accountNumber} belongs to {ownerName}.");
-        Console.WriteLine($"Balance: {balance}.");
+        Console.WriteLine($"Account {_accountNumber} belongs to {_ownerName}.");
+        Console.WriteLine($"Balance: {_balance}.");
     }
 }
