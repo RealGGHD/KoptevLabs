@@ -7,6 +7,12 @@ public class Sentence
     private string[] _arraySentence;
     private string _firstWord;
     private List<string> _arrayDates = new List<string>();
+    //Private const
+    private const int FirstCharIndex = 0; //First char in word
+    private const int LengthShortDate = 8; //Length of DD/MM/YY and DD.MM.YY
+    private const int LengthLongDate = 10; //Length of DD.MM.YYYY
+    private const int LastShortCharIndex = 7; //Length of last element in short date
+    private const int LastLongCharIndex = 9; //Length of last element in long date
     /// <summary>
     /// Constructor
     /// </summary>
@@ -41,13 +47,13 @@ public class Sentence
     {
         foreach (string word in _arraySentence)
         {
-            if (char.IsDigit(word[0]))
+            if (char.IsDigit(word[FirstCharIndex]))
             {
-                if (word.Length == 8 && char.IsDigit(word[7]))
+                if (word.Length == LengthShortDate && char.IsDigit(word[LastShortCharIndex]))
                 {
                     _arrayDates.Add(word);
                 }
-                else if (word.Length == 10 && char.IsDigit(word[9]))
+                else if (word.Length == LengthLongDate && char.IsDigit(word[LastLongCharIndex]))
                 {
                     _arrayDates.Add(word);
                 }

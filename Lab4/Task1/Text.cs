@@ -28,10 +28,10 @@ public class Text
     void CalculateResult()
     {
         _arrayText = _text.Split(". ");
-        foreach (string temp in _arrayText)
+        foreach (string oldSentence in _arrayText)
         {
-            Sentence sentence = new Sentence(temp);
-            string newSentence = sentence.GetResult();
+            Sentence calcSentence = new Sentence(oldSentence);
+            string newSentence = calcSentence.GetResult();
             _listText.Add(newSentence);
         }
         _arrayResult = _listText.ToArray();

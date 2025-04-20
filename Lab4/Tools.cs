@@ -11,8 +11,8 @@ class Tools
         //string input = "Сегодня будет дождь 19.04.2025. Завтра будет снег 20/04/25. Потом будет солнечно 01.01.20 20/04/24.";
         string input = Input("Введите предложение: ");
         Text text = new Text(input);
-        string[] result = text.GetResult();
-        foreach (string sentence in result)
+        string[] arraySentence = text.GetResult();
+        foreach (string sentence in arraySentence)
         {
             Console.WriteLine(sentence);
         }
