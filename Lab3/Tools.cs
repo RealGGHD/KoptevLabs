@@ -3,12 +3,13 @@ namespace Lab3;
 using Task1;
 class Tools
 {
+    //Private field
+    private const bool IgnoreRegister = true;
     /// <summary>
     /// Run program
     /// </summary>
     static void Main()
     {
-        bool IgnoreRegister = true;
         while (true)
         {
             string input = Input("Write the name of animal (Lion/Elephant/Bird): ").Trim();
