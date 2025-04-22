@@ -7,7 +7,7 @@ abstract class Animal
     /// </summary>
     public abstract void MakeSound();
     /// <summary>
-    /// Possible type of animal
+    /// Possible types of animal
     /// </summary>
     public enum AnimalType
     {
@@ -16,9 +16,9 @@ abstract class Animal
         Bird
     }
     /// <summary>
-    /// Creates an instance with the required animal   
+    /// Creates object with type: Animal
     /// </summary>
-    public static Animal Create(AnimalType type)
+    public static Animal CreateObject(AnimalType type)
     {
         switch (type)
         {
