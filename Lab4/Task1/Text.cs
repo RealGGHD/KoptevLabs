@@ -20,7 +20,10 @@ public class Text
     void PrepareText()
     {
         int LastSymbolIndex = _text.Length - 1;
-        _text = _text.Remove(LastSymbolIndex);
+        if (_text[LastSymbolIndex] == '.')
+        {
+            _text = _text.Remove(LastSymbolIndex);
+        }
     }
     /// <summary>
     /// Splitting text into array. Transition to Sentence.cs. Forming list. Parse into array.

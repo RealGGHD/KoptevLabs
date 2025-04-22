@@ -8,12 +8,15 @@ class Tools
     /// </summary>
     static void Main()
     {
-        string input = Input("Введите предложение: ");
-        Text text = new Text(input);
-        string[] arraySentence = text.GetResult();
-        foreach (string sentence in arraySentence)
+        while (true)
         {
-            Console.WriteLine(sentence);
+            string input = Input("Enter a sentence: ");
+            Text text = new Text(input);
+            string[] arraySentence = text.GetResult();
+            foreach (string sentence in arraySentence)
+            {
+                Console.WriteLine(sentence);
+            }
         }
     }
     /// <summary>

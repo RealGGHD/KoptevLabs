@@ -1,5 +1,6 @@
 ﻿//1 variant
 namespace Lab4.Task1;
+using System.Text.RegularExpressions;
 public class Sentence
 {
     //Private fields
@@ -25,12 +26,7 @@ public class Sentence
     /// </summary>
     void PrepareSentence()
     {
-        _sentence = _sentence.Replace(",", "")
-            .Replace("?", "")
-            .Replace(":", "")
-            .Replace("\"", "")
-            .Replace("'", "")
-            .Replace("!", "");
+        _sentence = Regex.Replace(_sentence, "[,?:\"'!]", "");
         _arraySentence = _sentence.Split(' ');
     }
     /// <summary>
@@ -47,7 +43,7 @@ public class Sentence
     {
         foreach (string word in _arraySentence)
         {
-            if (char.IsDigit(word[FirstCharIndex]))
+            if (word.Length > 0 && char.IsDigit(word[FirstCharIndex]))
             {
                 if (word.Length == LengthShortDate && char.IsDigit(word[LastShortCharIndex]))
                 {
