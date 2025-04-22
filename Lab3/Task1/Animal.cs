@@ -2,7 +2,7 @@
 namespace Lab3.Task1;
 abstract class Animal
 {
-    /// <summary>
+    /// <summary>   
     /// Inherited should initialize MakeSound()
     /// </summary>
     public abstract void MakeSound();
