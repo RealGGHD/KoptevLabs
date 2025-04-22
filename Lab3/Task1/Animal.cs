@@ -22,10 +22,14 @@ abstract class Animal
     {
         switch (type)
         {
-            case AnimalType.Lion: return new Lion();
-            case AnimalType.Elephant: return new Elephant();
-            case AnimalType.Bird: return new Bird();
-            default: return null;
+            case AnimalType.Lion: 
+                return new Lion();
+            case AnimalType.Elephant: 
+                return new Elephant();
+            case AnimalType.Bird: 
+                return new Bird();
+            default: 
+                return null;
         }
     }
 }
