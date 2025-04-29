@@ -22,7 +22,7 @@ public class Sentence
         _sentence = sentence;
     }
     /// <summary>
-    /// Remove punctuation marks. Split sentences into words.
+    /// Remove punctuation marks via regular expression. Split sentences into words.
     /// </summary>
     void PrepareSentence()
     {

@@ -15,7 +15,7 @@ public class Text
         _text = text;
     }
     /// <summary>
-    /// Remove last symbol from [string] text
+    /// If last symbol '.', then remove it. 
     /// </summary>
     void PrepareText()
     {
