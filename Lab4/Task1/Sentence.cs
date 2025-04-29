@@ -64,6 +64,7 @@ public class Sentence
         PrepareSentence();
         TakeFirstWord();
         TakeDates();
-        return _firstWord + " " + string.Join(" ", _arrayDates);
+        string result = _firstWord + " " + string.Join(" ", _arrayDates);
+        return result;
     }
 }
