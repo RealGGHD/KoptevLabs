@@ -12,8 +12,13 @@ class Tools
     {
         while (true)
         {
-            string input = Input("Write the name of animal (Lion/Elephant/Bird): ").Trim();
-            if (Enum.TryParse(input, IgnoreRegister, out Animal.AnimalType type))
+            string input = Input("Write the name of animal (Lion/Elephant/Bird): ");
+            string preparedInput = input.Trim();
+            
+            Animal.AnimalType type;
+            bool isParsed = Enum.TryParse(preparedInput, IgnoreRegister, out type);
+            
+            if (isParsed)
             {
                 Animal ourAnimal = Animal.CreateObject(type);
                 ourAnimal.MakeSound();
