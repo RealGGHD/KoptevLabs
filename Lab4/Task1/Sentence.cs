@@ -26,7 +26,11 @@ public class Sentence
     /// </summary>
     void PrepareSentence()
     {
-        _sentence = Regex.Replace(_sentence, "[,?:\"'!]", "");
+        var punctuation = new[] { ',', '?', ':', '"', '\'', '!' };
+        foreach (var element in punctuation)
+        {
+            _sentence = _sentence.Replace(element.ToString(), "");
+        }
         _arraySentence = _sentence.Split(' ');
     }
     /// <summary>
@@ -43,15 +47,25 @@ public class Sentence
     {
         foreach (string word in _arraySentence)
         {
-            if (word.Length > 0 && char.IsDigit(word[FirstCharIndex]))
+            if (string.IsNullOrEmpty(word))
             {
-                if (word.Length == LengthShortDate && char.IsDigit(word[LastShortCharIndex]))
+                continue;
+            }
+            if (char.IsDigit(word[FirstCharIndex]))
+            {
+                if (word.Length == LengthShortDate)
                 {
-                    _arrayDates.Add(word);
+                    if (char.IsDigit(word[LastShortCharIndex]))
+                    {
+                        _arrayDates.Add(word);
+                    }
                 }
-                else if (word.Length == LengthLongDate && char.IsDigit(word[LastLongCharIndex]))
+                else if (word.Length == LengthLongDate)
                 {
-                    _arrayDates.Add(word);
+                    if (char.IsDigit(word[LastLongCharIndex]))
+                    {
+                        _arrayDates.Add(word);
+                    }
                 }
             }
         }

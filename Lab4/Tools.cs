@@ -19,6 +19,7 @@ class Tools
             }
         }
     }
+
     /// <summary>
     /// Input and verification
     /// </summary>
