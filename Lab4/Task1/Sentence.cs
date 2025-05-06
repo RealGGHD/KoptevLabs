@@ -14,6 +14,7 @@ public class Sentence
     private const int LengthLongDate = 10; //Length of DD.MM.YYYY
     private const int LastShortCharIndex = 7; //Length of last element in short date
     private const int LastLongCharIndex = 9; //Length of last element in long date
+    private const string SpaceString = " ";
     /// <summary>
     /// Constructor
     /// </summary>
@@ -78,7 +79,8 @@ public class Sentence
         PrepareSentence();
         TakeFirstWord();
         TakeDates();
-        string result = _firstWord + " " + string.Join(" ", _arrayDates);
+        string dates = string.Join(SpaceString, _arrayDates);
+        string result = _firstWord + SpaceString + dates;
         return result;
     }
 }
