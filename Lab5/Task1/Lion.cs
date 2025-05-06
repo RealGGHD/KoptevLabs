@@ -2,9 +2,15 @@
 
 class Lion : Animal
 {
-    public Lion(string name) : base(name)
+    /// <summary>
+    /// Use animal constructor
+    /// </summary>
+    public Lion(string name, int age) : base(name, age)
     {
     }
+    /// <summary>
+    /// Eating method
+    /// </summary>
     public override void Eat()
     {
         Console.WriteLine("Lion eats meat!");

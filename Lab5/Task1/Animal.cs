@@ -6,29 +6,40 @@ abstract class Animal
     private string name = "Default";
     private int age = 0;
     private int energy = 0;
-    //Get and set for Name
+    /// <summary>
+    /// Get and set method for Name
+    /// </summary>
     public string NameGS
     {
         get { return name; }
         set { name = value; }
     }
-    //Get and set for Age
+    /// <summary>
+    /// Get and set method for Age
+    /// </summary>
     public int AgeGS
     {
         get { return age; }
         set { age = value; }
     }
-    //Constructor
-    public Animal(string name)
+    /// <summary>
+    /// Animal constructor
+    /// </summary>
+    public Animal(string name, int age)
     {
-        this.name = name;
+        NameGS = name;
+        AgeGS = age;
     }
-    //Change number of energy 
+    /// <summary>
+    /// Increase number of energy method
+    /// </summary>
     public void IncreaseEnergy(int amount)
     {
         energy += amount;
-        Console.WriteLine($"{NameGS} has {energy} energy.");
+        Console.WriteLine($"{AgeGS} years old, {NameGS} has {energy} energy.");
     }
-
+    /// <summary>
+    /// Abstract method for overriding
+    /// </summary>
     public abstract void Eat();
 }
