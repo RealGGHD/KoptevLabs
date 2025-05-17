@@ -9,7 +9,7 @@ abstract class Animal
     /// <summary>
     /// Get and set method for Name
     /// </summary>
-    public string NameGS
+    public string Name
     {
         get { return name; }
         set { name = value; }
@@ -17,7 +17,7 @@ abstract class Animal
     /// <summary>
     /// Get and set method for Age
     /// </summary>
-    public int AgeGS
+    public int Age
     {
         get { return age; }
         set { age = value; }
@@ -27,8 +27,8 @@ abstract class Animal
     /// </summary>
     public Animal(string name, int age)
     {
-        NameGS = name;
-        AgeGS = age;
+        Name = name;
+        Age = age;
     }
     /// <summary>
     /// Increase number of energy method
@@ -36,7 +36,7 @@ abstract class Animal
     public void IncreaseEnergy(int amount)
     {
         energy += amount;
-        Console.WriteLine($"{AgeGS} years old, {NameGS} has {energy} energy.");
+        Console.WriteLine($"{Age} years old, {Name} has {energy} energy.");
     }
     /// <summary>
     /// Abstract method for overriding
