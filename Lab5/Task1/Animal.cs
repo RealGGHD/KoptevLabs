@@ -3,8 +3,8 @@
 abstract class Animal
 {
     //Private fields
-    private string name = "Default";
-    private int age = 0;
+    private string name;
+    private int age;
     private int energy = 0;
     /// <summary>
     /// Get and set method for Name
@@ -31,7 +31,7 @@ abstract class Animal
         Age = age;
     }
     /// <summary>
-    /// Increase number of energy method
+    /// Increase number of energy
     /// </summary>
     public void IncreaseEnergy(int amount)
     {

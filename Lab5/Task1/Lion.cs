@@ -2,6 +2,8 @@
 
 class Lion : Animal
 {
+    //Private fields
+    private const int LivingCost = 3;
     /// <summary>
     /// Use animal constructor
     /// </summary>
@@ -14,6 +16,6 @@ class Lion : Animal
     public override void Eat()
     {
         Console.WriteLine("Lion eats meat!");
-        IncreaseEnergy(3);
+        IncreaseEnergy(LivingCost);
     }
 }
