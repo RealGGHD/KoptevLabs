@@ -36,7 +36,7 @@ abstract class Animal
     public void IncreaseEnergy(int amount)
     {
         energy += amount;
-        Console.WriteLine($"{Age} years old, {Name} has {energy} energy.");
+        Console.WriteLine($"{Age} years old, {Name} spent {energy} energy.");
     }
     /// <summary>
     /// Abstract method for overriding
