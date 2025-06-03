@@ -9,6 +9,7 @@ class Tools
     private const int rectangleNumSides = 4;
     private const int triangleColorPosition = 3;
     private const int rectangleColorPosition = 4;
+    private const string partPath = "..\\..\\..\\";
     
     static void Main(string[] args)
     {
@@ -47,8 +48,10 @@ class Tools
     /// </summary>
     static string getPath(string fileName)
     {
-        string path = Path.Combine(AppContext.BaseDirectory, @$"..\..\..\{fileName}");
-        string fullPath = Path.GetFullPath(path);
+        string basePath = AppContext.BaseDirectory;
+        string newPath = $@"{partPath}{fileName}";
+        string allPath = Path.Combine(basePath, newPath);
+        string fullPath = Path.GetFullPath(allPath);
         return fullPath;
     }
     /// <summary>
