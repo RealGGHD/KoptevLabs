@@ -50,9 +50,9 @@ class Tools
     {
         string basePath = AppContext.BaseDirectory;
         string newPath = $@"{partPath}{fileName}";
-        string allPath = Path.Combine(basePath, newPath);
-        string fullPath = Path.GetFullPath(allPath);
-        return fullPath;
+        string fullPath = Path.Combine(basePath, newPath);
+        string path = Path.GetFullPath(fullPath);
+        return path;
     }
     /// <summary>
     /// Txt to array
