@@ -74,7 +74,7 @@ class Tools
         }
     }
     /// <summary>
-    /// Calculate square for all polygons
+    /// Sort all polygons by square from low to high
     /// </summary>
     static void sortPolygons(List<Polygon> polygons)
     {
