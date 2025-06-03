@@ -116,6 +116,7 @@ class Tools
         {
             throw new Exception("Error: Invalid input!");
         }
+        Console.Write("\n");
         return input;
     }
 }
