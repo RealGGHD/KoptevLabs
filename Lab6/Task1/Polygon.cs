@@ -48,20 +48,21 @@ public abstract class Polygon : IComparable
     /// </summary>
     public void Print(int index)
     {
-        if (Enum.TryParse<ConsoleColor>(_color, IgnoreUpperLowercase, out ConsoleColor consoleColor)) //Try to parse color
+        if (Enum.TryParse<ConsoleColor>(Color, IgnoreUpperLowercase, out ConsoleColor consoleColor)) //Try to parse color
         {
             Console.ForegroundColor = consoleColor;
-            if (GetType().Name == "Triangle" && Color == "Red" && IsRectangular())
+            string typeFigure = GetType().Name;
+            if (typeFigure == "Triangle" && Color == "Red" && IsRectangular())
             {
                 int first = LengthsOfSides[0];
                 int second = LengthsOfSides[1];
                 int third = LengthsOfSides[2];
                 int perimeter = first + second + third;
-                Console.WriteLine($"{index} | {GetType().Name} | {_square}, Perimeter: {perimeter} | {_color}");
+                Console.WriteLine($"{index} | {typeFigure} | {Square}, Perimeter: {perimeter} | {Color}");
             }
             else
             {
-                Console.WriteLine($"{index} | {GetType().Name} | {_square} | {_color}");
+                Console.WriteLine($"{index} | {typeFigure} | {Square} | {Color}");
             }
             Console.ResetColor();
         }
