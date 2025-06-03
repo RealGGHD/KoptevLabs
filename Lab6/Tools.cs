@@ -10,11 +10,12 @@ class Tools
     private const int rectangleNumSides = 4;
     private const int triangleColorPosition = 3;
     private const int rectangleColorPosition = 4;
-    private const string partPath = "..\\..\\..\\";
     
     static void Main(string[] args)
     {
-        string[] lines = getInput("input.txt");
+        string fileName = Input("Write file name (input): ");
+        
+        string[] lines = GetFileData($"{fileName}.txt");
         
         List<Polygon> polygons = new List<Polygon>();
         
@@ -26,31 +27,31 @@ class Tools
             if (numOfParts == rectangleSign)
             {
                 int[] lengths = new int[rectangleNumSides];
-                partsToLengths(lengths, parts, rectangleNumSides);
+                PartsToLengths(lengths, parts, rectangleNumSides);
                 Rectangle rectangle = new Rectangle(lengths, parts[rectangleColorPosition]);
                 polygons.Add(rectangle);
             }
             else if (numOfParts == triangleSign)
             {
                 int[] lengths = new int[triangleNumSides];
-                partsToLengths(lengths, parts, triangleNumSides);
+                PartsToLengths(lengths, parts, triangleNumSides);
                 Triangle triangle = new Triangle(lengths, parts[triangleColorPosition]);
                 polygons.Add(triangle);
             }
         }
-        calcSquare(polygons);
+        CalcSquare(polygons);
         
-        sortPolygons(polygons);
+        SortPolygons(polygons);
 
-        printPolygons(polygons);
+        PrintPolygons(polygons);
     }
     /// <summary>
     /// Get path of input.txt in direstory with Tools.cs
     /// </summary>
-    static string getPath(string fileName)
+    static string GetPath(string fileName)
     {
         string basePath = AppContext.BaseDirectory;
-        string newPath = $@"{partPath}{fileName}";
+        string newPath = $@"..\..\..\{fileName}";
         string fullPath = Path.Combine(basePath, newPath);
         string path = Path.GetFullPath(fullPath);
         return path;
@@ -58,33 +59,33 @@ class Tools
     /// <summary>
     /// Txt to array
     /// </summary>
-    static string[] getInput(string fileName)
+    static string[] GetFileData(string fileName)
     {
-        string pathToInput = getPath(fileName);
+        string pathToInput = GetPath(fileName);
         string[] lines = File.ReadAllLines(pathToInput);
         return lines;
     }
     /// <summary>
     /// Calculate square for all polygons
     /// </summary>
-    static void calcSquare(List<Polygon> polygons)
+    static void CalcSquare(List<Polygon> polygons)
     {
         foreach (var polygon in polygons)
         {
-            polygon.squareCalc();
+            polygon.SquareCalc();
         }
     }
     /// <summary>
     /// Sort all polygons by square from low to high
     /// </summary>
-    static void sortPolygons(List<Polygon> polygons)
+    static void SortPolygons(List<Polygon> polygons)
     {
         polygons.Sort((p1, p2) => p1.Square.CompareTo(p2.Square));
     }
     /// <summary>
     /// Print polygons one by one
     /// </summary>
-    static void printPolygons(List<Polygon> polygons)
+    static void PrintPolygons(List<Polygon> polygons)
     {
         int positionOfPolygon  = 1;
         Console.WriteLine("№ | Type of figure | Square | Color");
@@ -97,11 +98,24 @@ class Tools
     /// <summary>
     /// Convert parts (str) to lengths (int)
     /// </summary>
-    static void partsToLengths(int[] lengths, string[] parts, int corner)
+    static void PartsToLengths(int[] lengths, string[] parts, int corner)
     {
         for (int i = 0; i < corner; i++)
         {
             lengths[i] = int.Parse(parts[i]);
         }
+    }
+    /// <summary>
+    /// Input and verification
+    /// </summary>
+    static string Input(string message)
+    {
+        Console.Write(message);
+        string? input = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            throw new Exception("Error: Invalid input!");
+        }
+        return input;
     }
 }

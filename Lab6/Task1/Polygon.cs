@@ -18,7 +18,7 @@ public abstract class Polygon : IComparable
     /// <summary>
     /// Abstract method for realization in subclasses
     /// </summary>
-    public abstract double squareCalc();
+    public abstract double SquareCalc();
     /// <summary>
     /// Get and set for array of int
     /// </summary>
@@ -51,7 +51,7 @@ public abstract class Polygon : IComparable
         if (Enum.TryParse<ConsoleColor>(_color, IgnoreUpperLowercase, out ConsoleColor consoleColor)) //Try to parse color
         {
             Console.ForegroundColor = consoleColor;
-            if (GetType().Name == "Triangle" && Color == "Red" && isRectangular())
+            if (GetType().Name == "Triangle" && Color == "Red" && IsRectangular())
             {
                 int first = LengthsOfSides[0];
                 int second = LengthsOfSides[1];
@@ -69,7 +69,7 @@ public abstract class Polygon : IComparable
     /// <summary>
     /// Is triangle rectangular?
     /// </summary>
-    bool isRectangular()
+    bool IsRectangular()
     {
         int max = LengthsOfSides.Max();
         int min = LengthsOfSides.Min();

@@ -13,7 +13,7 @@ public class Rectangle : Polygon
     /// <summary>
     /// Calculate square of triangle via multiplication of near sides
     /// </summary>
-    public override double squareCalc()
+    public override double SquareCalc()
     {
         int width = LengthsOfSides[0];
         int height = LengthsOfSides[1];

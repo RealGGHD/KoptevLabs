@@ -13,7 +13,7 @@ public class Triangle : Polygon
     /// <summary>
     /// Calculate square of triangle via Heron's formula
     /// </summary>
-    public override double squareCalc()
+    public override double SquareCalc()
     {
         int first = LengthsOfSides[0];
         int second = LengthsOfSides[1];
