@@ -50,7 +50,10 @@ public abstract class Polygon : IComparable
             Console.ForegroundColor = consoleColor;
             if (GetType().Name == "Triangle" && Color == "Red" && isRectangular())
             {
-                int perimeter = LengthsOfSides[0] + LengthsOfSides[1] + LengthsOfSides[2];
+                int first = LengthsOfSides[0];
+                int second = LengthsOfSides[1];
+                int third = LengthsOfSides[2];
+                int perimeter = first + second + third;
                 Console.WriteLine($"{index} | {GetType().Name} | {_square}, Perimeter: {perimeter} | {_color}");
             }
             else
