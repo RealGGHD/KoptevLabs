@@ -18,8 +18,9 @@ public class Triangle : Polygon
         int first = LengthsOfSides[0];
         int second = LengthsOfSides[1];
         int third = LengthsOfSides[2];
-        double semiperimeter = (first + second + third) / 2.0;
-        double square = Math.Sqrt(semiperimeter * (semiperimeter - first) * (semiperimeter - second) * (semiperimeter - third));
+        int perimeter = first + second + third;
+        double halfPerimeter = perimeter / 2.0;
+        double square = Math.Sqrt(halfPerimeter * (halfPerimeter - first) * (halfPerimeter - second) * (halfPerimeter - third));
         Square = Math.Round(square, 2);
         return Square;
     }
