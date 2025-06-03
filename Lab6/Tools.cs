@@ -28,14 +28,16 @@ class Tools
             {
                 int[] lengths = new int[rectangleNumSides];
                 PartsToLengths(lengths, parts, rectangleNumSides);
-                Rectangle rectangle = new Rectangle(lengths, parts[rectangleColorPosition]);
+                string color = parts[rectangleColorPosition];
+                Rectangle rectangle = new Rectangle(lengths, color);
                 polygons.Add(rectangle);
             }
             else if (numOfParts == triangleSign)
             {
                 int[] lengths = new int[triangleNumSides];
                 PartsToLengths(lengths, parts, triangleNumSides);
-                Triangle triangle = new Triangle(lengths, parts[triangleColorPosition]);
+                string color = parts[triangleColorPosition];
+                Triangle triangle = new Triangle(lengths, color);
                 polygons.Add(triangle);
             }
         }
