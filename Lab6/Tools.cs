@@ -94,7 +94,7 @@ class Tools
         }
     }
     /// <summary>
-    /// Print polygons one by one
+    /// Convert parts (str) to lengths (int)
     /// </summary>
     static void partsToLengths(int[] lengths, string[] parts, int corner)
     {
