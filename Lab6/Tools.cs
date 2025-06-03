@@ -41,11 +41,24 @@ class Tools
                 polygons.Add(triangle);
             }
         }
-        CalcSquare(polygons);
         
-        SortPolygons(polygons);
+        //Calculate square for all polygons
+        foreach (var polygon in polygons)
+        {
+            polygon.SquareCalc();
+        }
+        
+        //Sort all polygons by square from low to high
+        polygons.Sort((p1, p2) => p1.Square.CompareTo(p2.Square));
 
-        PrintPolygons(polygons);
+        //Print polygons one by one
+        int positionOfPolygon  = 1;
+        Console.WriteLine("№ | Type of figure | Square | Color");
+        foreach (var polygon in polygons)
+        {
+            polygon.Print(positionOfPolygon);
+            positionOfPolygon++;
+        }
     }
     /// <summary>
     /// Get path of input.txt in direstory with Tools.cs
@@ -66,36 +79,6 @@ class Tools
         string pathToInput = GetPath(fileName);
         string[] lines = File.ReadAllLines(pathToInput);
         return lines;
-    }
-    /// <summary>
-    /// Calculate square for all polygons
-    /// </summary>
-    static void CalcSquare(List<Polygon> polygons)
-    {
-        foreach (var polygon in polygons)
-        {
-            polygon.SquareCalc();
-        }
-    }
-    /// <summary>
-    /// Sort all polygons by square from low to high
-    /// </summary>
-    static void SortPolygons(List<Polygon> polygons)
-    {
-        polygons.Sort((p1, p2) => p1.Square.CompareTo(p2.Square));
-    }
-    /// <summary>
-    /// Print polygons one by one
-    /// </summary>
-    static void PrintPolygons(List<Polygon> polygons)
-    {
-        int positionOfPolygon  = 1;
-        Console.WriteLine("№ | Type of figure | Square | Color");
-        foreach (var polygon in polygons)
-        {
-            polygon.Print(positionOfPolygon);
-            positionOfPolygon++;
-        }
     }
     /// <summary>
     /// Convert parts (str) to lengths (int)
