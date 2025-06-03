@@ -60,7 +60,8 @@ class Tools
     static string[] getInput(string fileName)
     {
         string pathToInput = getPath(fileName);
-        return File.ReadAllLines(pathToInput);
+        string[] lines = File.ReadAllLines(pathToInput);
+        return lines;
     }
     /// <summary>
     /// Calculate square for all polygons
