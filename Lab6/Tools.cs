@@ -3,6 +3,7 @@ using Task1;
 
 class Tools
 {
+    //Private const fields
     private const int triangleSign = 4;
     private const int rectangleSign = 5;
     private const int triangleNumSides = 3;

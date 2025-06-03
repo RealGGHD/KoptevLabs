@@ -7,11 +7,14 @@ interface IComparable
 
 public abstract class Polygon : IComparable
 {
-    //Private firlds
+    //Private const fields
     private const int maxSides = 4;
+    private const bool IgnoreUpperLowercase = true;
+    //Private fields
     private int[] _lengthsOfSides = new int[maxSides];
     private string _color;
     private double _square;
+    
     /// <summary>
     /// Abstract method for realization in subclasses
     /// </summary>
@@ -45,7 +48,7 @@ public abstract class Polygon : IComparable
     /// </summary>
     public void Print(int index)
     {
-        if (Enum.TryParse<ConsoleColor>(_color, true, out ConsoleColor consoleColor)) //Try to parse color
+        if (Enum.TryParse<ConsoleColor>(_color, IgnoreUpperLowercase, out ConsoleColor consoleColor)) //Try to parse color
         {
             Console.ForegroundColor = consoleColor;
             if (GetType().Name == "Triangle" && Color == "Red" && isRectangular())
