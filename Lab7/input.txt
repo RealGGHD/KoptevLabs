@@ -1,0 +1,6 @@
+﻿Ivanov 2010-05-12 Boxing Youth_I
+Petrov 2009-07-22 Swimming Youth_II
+Sidorov 2008-03-05 Acrobatics Adult_I
+Kuznetsov 2007-12-15 Athletics Youth_III
+Smirnov 2006-08-30 Boxing Adult_II
+Fedorov 2011-01-20 Swimming Youth_I
