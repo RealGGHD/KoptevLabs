@@ -1,21 +1,24 @@
 ﻿using System.Text;
-
 namespace Lab7;
 using Task1;
 
 class Tools
 {
+    //Fields
+    private const string FileNameMsg = "Write file name (input): ";
+    private const string SportNameMsg = "\nWrite name of sport you need (index): ";
+    private const string ErrorAthleteMsg = "Athletes not found";
+    private const string MenuMsg = "№ | Surname | Age";
+    private const string ErrorInputMsg = "Error: Invalid input!";
     /// <summary>
     /// Main method
     /// </summary>
-    static void Main(string[] args)
+    static void Main()
     {
-        string fileName = Input("Write file name (input): ");
-        
+        string fileName = Input(FileNameMsg);
         string[] lines = GetFileData($"{fileName}.txt");
         
         List<Athletes> athletesArray = new List<Athletes>();
-        
         foreach (string line in lines)
         {
             string[] parts = line.Split(' ');
@@ -25,11 +28,10 @@ class Tools
             Category Rank = Enum.Parse<Category>(parts[3]);
             
             Athletes athlete = new Athletes(LastName, BirthDate, Sport, Rank);
-            
             athletesArray.Add(athlete);
         }
-        WriteAthletesByCategory(athletesArray);
         
+        WriteAthletesByCategory(athletesArray);
         while (true)
         {
             Menu(athletesArray);
@@ -40,16 +42,20 @@ class Tools
     /// </summary>
     static void Menu(List<Athletes> athletesArray)
     {
+        Type sportTypes = typeof(SportType);
+        var sportArray = Enum.GetValues(sportTypes);
         int count = 1;
-        foreach (SportType sport in Enum.GetValues(typeof(SportType)))
+        foreach (SportType sport in sportArray)
         {
-            Console.Write($"{sport} ({count++}) | ");
+            Console.Write($"{sport} ({count}) | ");
+            count++;
         }
 
-        Array sports = Enum.GetValues(typeof(SportType));
-        string necessarySport = Input("\nWrite name of sport you need (index): ");
-        int sportIndex = int.Parse(necessarySport);
-        SportType selectedSport = (SportType)sports.GetValue(--sportIndex);
+        Array sports = Enum.GetValues(sportTypes);
+        string specificSport = Input(SportNameMsg);
+        int sportInput = int.Parse(specificSport);
+        int sportIndex = sportInput - 1;
+        SportType selectedSport = (SportType)sports.GetValue(sportIndex);
             
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine($"{selectedSport}:");
@@ -65,12 +71,14 @@ class Tools
         }
         Console.Write("\n");
     }
-    /// <summary>
+    /// <summary> 
     /// Write files with athletes by their category 
     /// </summary>
     static void WriteAthletesByCategory(List<Athletes> athletes)
     {
-        foreach (Category category in Enum.GetValues(typeof(Category)))
+        Type categoryTypes = typeof(Category);
+        var categoryArray = Enum.GetValues(categoryTypes);
+        foreach (Category category in categoryArray)
         {
             string fileName = $"{category}.txt";
 
@@ -79,35 +87,36 @@ class Tools
                 .GroupBy(a => a.Sport)
                 .OrderBy(g => g.Key);
 
-            var sb = new StringBuilder();
-            sb.AppendLine($"{category}:\n");
+            var buildString = new StringBuilder();
+            buildString.AppendLine($"{category}:\n");
             
             bool areAthletes = athletesInCategory.Any();
             if (!areAthletes)
             {
-                sb.AppendLine("Athletes not found");
+                buildString.AppendLine(ErrorAthleteMsg);
             }
             else
             {
                 foreach (var sportGroup in athletesInCategory)
                 {
                     string sportType = sportGroup.Key.ToString();
-                    sb.AppendLine(sportType);
-                    sb.AppendLine("№ | Surname | Age");
+                    buildString.AppendLine(sportType);
+                    buildString.AppendLine(MenuMsg);
                     int index = 1;
-                    foreach (var athlete in sportGroup.OrderBy(a => a.LastName))
+                    var sortedAthletes = sportGroup.OrderBy(a => a.LastName);
+                    foreach (var athlete in sortedAthletes)
                     {
                         string LastName = athlete.LastName;
                         int Age = athlete.GetAge();
-                        sb.AppendLine($"{index} | {LastName} | {Age}");
+                        buildString.AppendLine($"{index} | {LastName} | {Age}");
                         index++;
                     }
-                    sb.AppendLine();
+                    buildString.AppendLine();
                 }
             }
 
             string pathToOutputFolder = GetPath(fileName, true);
-            string information = sb.ToString();
+            string information = buildString.ToString();
             File.WriteAllText(pathToOutputFolder, information);
         }
     }
@@ -117,9 +126,15 @@ class Tools
     static string GetPath(string fileName, bool inOutputFolder = false)
     {
         string basePath = AppContext.BaseDirectory;
-        string folderPath = inOutputFolder 
-            ? Path.Combine(basePath, @"..\..\..\Output")
-            : Path.Combine(basePath, @"..\..\..");
+        string folderPath;
+        if (inOutputFolder)
+        {
+            folderPath = Path.Combine(basePath, @"..\..\..\Output");
+        }
+        else
+        {
+            folderPath = Path.Combine(basePath, @"..\..\..");
+        }
 
         if (inOutputFolder)
             Directory.CreateDirectory(folderPath);
@@ -146,7 +161,7 @@ class Tools
         string? input = Console.ReadLine();
         if (string.IsNullOrWhiteSpace(input))
         {
-            throw new Exception("Error: Invalid input!");
+            throw new Exception(ErrorInputMsg);
         }
         return input;
     }

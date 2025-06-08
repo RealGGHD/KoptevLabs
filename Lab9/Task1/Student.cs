@@ -1,19 +1,17 @@
-﻿namespace Lab8.Task1;
+﻿namespace Lab9.Task1;
 
 public class Student
 {
     //Fields
     public string LastName { get; set; }
-    public string FacultyName { get; set; }
     public decimal Scholarship { get; set; }
     public List<int> Grades { get; set; }
     /// <summary>
     /// Constructor for this class
     /// </summary>
-    public Student(string lastName, string facultyName, List<int> grades, decimal scholarship)
+    public Student(string lastName, List<int> grades, decimal scholarship)
     {
         LastName = lastName;
-        FacultyName = facultyName;
         Grades = grades;
         Scholarship = scholarship;
     }
@@ -28,22 +26,8 @@ public class Student
     /// Average score
     /// </summary>
     public double AverageGrade()
-    {
-        if (Grades.Count == 0)
-        {
-            return 0;
-        }
-        else
-        {
-            return Grades.Average();
-        }
-    }
-    /// <summary>
-    /// Update of name for faculty 
-    /// </summary>
-    public void UpdateFacultyName(string newFacultyName)
-    {
-        FacultyName = newFacultyName;
+    { 
+        return Grades.Count == 0 ? 0 : Grades.Average();
     }
     /// <summary>
     /// Add bonus to scholarship for excellent students
@@ -51,5 +35,11 @@ public class Student
     public void AddBonus(decimal bonus)
     {
         Scholarship += bonus;
+    }
+    
+    // LAB 9
+    public void Print()
+    {
+        Console.WriteLine($"Last Name: {LastName}, Average grade: {AverageGrade()}, Scholarship: {Scholarship}.");
     }
 }

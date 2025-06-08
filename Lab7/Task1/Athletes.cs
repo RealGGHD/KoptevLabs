@@ -1,7 +1,4 @@
-﻿using System.Runtime.InteropServices.Swift;
-
-namespace Lab7.Task1;
-
+﻿namespace Lab7.Task1;
 public enum SportType
 {
     Athletics, 
@@ -9,7 +6,6 @@ public enum SportType
     Swimming, 
     Acrobatics
 }
-
 public enum Category
 {
     Youth_I,
@@ -19,14 +15,20 @@ public enum Category
     Adult_II,
     Adult_III
 }
-
 public struct Athletes
 {
-    //Fields
+    //Public fields
     public string LastName { get; set; }
     public DateTime BirthDate { get; set; }
     public SportType Sport { get; set; }
     public Category Rank { get; set; }
+    //Private fields
+    private const string LastNameMsg = "Last Name: ";
+    private const string BirthDateMsg = "Birth Date: ";
+    private const string AgeMsg = "Age: ";
+    private const string SportMsg = "Sport: ";
+    private const string CategoryMsg = "Category: ";
+    private const string DateFormat = "dd.mm.yyyy";
     /// <summary>
     /// Constructor for this struct
     /// </summary>
@@ -44,9 +46,16 @@ public struct Athletes
     {
         DateTime today = DateTime.Today;
         int age = today.Year - BirthDate.Year;
-        bool birthdayHasPassedThisYear =
-            (today.Month > BirthDate.Month) ||
-            (today.Month == BirthDate.Month && today.Day >= BirthDate.Day);
+        bool birthdayHasPassedThisYear;
+        if ((today.Month > BirthDate.Month) || (today.Month == BirthDate.Month && today.Day >= BirthDate.Day))
+        {
+            birthdayHasPassedThisYear = true;
+        }
+        else
+        {
+            birthdayHasPassedThisYear = false;
+        }
+        
         if (!birthdayHasPassedThisYear)
         {
             age--;
@@ -59,10 +68,12 @@ public struct Athletes
     public void PrintInfo()
     {
         int age = GetAge();
-        Console.WriteLine("Last Name: " + LastName);
-        Console.WriteLine("Birth Date: " + BirthDate.ToString("dd.mm.yyyy"));
-        Console.WriteLine("Age: " + age);
-        Console.WriteLine("Sport: " + Sport);
-        Console.WriteLine("Category: " + Rank + "\n");
+        string BirthDateStr = BirthDate.ToString(DateFormat);
+        
+        Console.WriteLine(LastNameMsg + LastName);
+        Console.WriteLine(BirthDateMsg + BirthDateStr);
+        Console.WriteLine(AgeMsg + age);
+        Console.WriteLine(SportMsg + Sport);
+        Console.WriteLine(CategoryMsg + Rank + "\n");
     }
 }

@@ -4,41 +4,69 @@ namespace Lab8;
 
 class Tools
 {
+    //Private fields
+    private const string FacultyFileMsg = "Write faculty file name (faculties): ";
+    private const string StudentsFileMsg = "Write students file name (students): ";
+    private const string ErrorInputMsg = "Error: Invalid input!";
+    private const string MenuMsg = "Rename Faculty Name (1) or Award Excellent Student (2)\nWhat would you like to do: ";
+    private const string InfoOptionMsg = "Print updated info (1) or skip(2): ";
+    private const string InfoMsg = "\nAfter updates:\n";
+    private const string FacultyRenameMsg = "Enter faculty name to rename: ";
+    private const string FacultyNewMsg = "Enter new faculty name:";
+    private const string AwardFacultyMsg = "Enter faculty name to award excellent students: ";
+    private const string BonusMsg = "Enter bonus amount: ";
+    private const string InfoStudentMsg = "№ | LastName | Average_Score | Scholarship";
     /// <summary>
     /// All grades are 10 for specific student?
     /// </summary>
     static void Main()
     {
-        var faculties = ReadFaculties("faculties.txt");
-        var students = ReadStudents("students.txt"); 
-        foreach (var faculty in faculties) 
+        string facultiesName = Input(FacultyFileMsg);
+        var faculties = ReadFaculties($"{facultiesName}.txt");
+        
+        string studentsName = Input(StudentsFileMsg);
+        var students = ReadStudents($"{studentsName}.txt"); 
+        
+        foreach (var faculty in faculties)
         {
-            foreach (var student in students.Where(s => s.FacultyName == faculty.Name))
+            var sortedStudents = students.Where(s => s.FacultyName == faculty.Name);
+            foreach (var student in sortedStudents)
             {
                 faculty.RegisterStudent(student);
             }
         }
+        
         PrintInfo(faculties, students);
         while (true)
         {
-            Console.WriteLine("Rename Faculty Name (1) or Award Excellent Student (2)");
-            Console.Write("What would you like to do: ");
-            string input = Console.ReadLine();
-            int choose = Convert.ToInt32(input); 
-            if (choose == 1)
-            {
-                RenameFaculty(faculties);
-            }
-            else if (choose == 2)
-            {
-                AwardStudent(faculties);
-            }
-            else
-            {
-                Console.WriteLine("Invalid input");
-                break;
-            }
-            Console.WriteLine("\nAfter updates:\n");
+            Menu(faculties, students);
+        }
+    }
+    /// <summary>
+    /// Menu to rename faculty or award excellent students
+    /// </summary>
+    static void Menu(List<Faculty> faculties, List<Student> students)
+    {
+        string optionStr = Input(MenuMsg);
+        int optionInt = Convert.ToInt32(optionStr); 
+        if (optionInt == 1)
+        {
+            RenameFaculty(faculties);
+        }
+        else if (optionInt == 2)
+        {
+            AwardStudent(faculties);
+        }
+        else
+        {
+            throw new Exception(ErrorInputMsg);
+        }
+            
+        string infoStr = Input(InfoOptionMsg);
+        int infoInt = Convert.ToInt32(infoStr);
+        if (infoInt == 1)
+        {
+            Console.WriteLine(InfoMsg);
             PrintInfo(faculties, students);
         }
     }
@@ -47,18 +75,16 @@ class Tools
     /// </summary>
     static void RenameFaculty(List<Faculty> faculties)
     {
-        Console.WriteLine("Enter faculty name to rename:");
-        string oldFacultyName = Console.ReadLine();
+        string oldFacultyName = Input(FacultyRenameMsg);
         var facultyToRename = faculties.FirstOrDefault(f => f.Name == oldFacultyName);
         if (facultyToRename != null)
         {
-            Console.WriteLine("Enter new faculty name:");
-            string newFacultyName = Console.ReadLine();
+            string newFacultyName = Input(FacultyNewMsg);
             facultyToRename.ChangeFacultyName(newFacultyName);
         }
         else
         {
-            throw new Exception("Invalid faculty name");
+            throw new Exception(ErrorInputMsg);
         }
     }
     /// <summary>
@@ -66,18 +92,17 @@ class Tools
     /// </summary>
     static void AwardStudent(List<Faculty> faculties)
     {
-        Console.WriteLine("Enter faculty name to award excellent students:");
-        string facultyForAward = Console.ReadLine();
+        string facultyForAward = Input(AwardFacultyMsg);
         var facultyToAward = faculties.FirstOrDefault(f => f.Name == facultyForAward);
         if (facultyToAward != null)
         {
-            Console.WriteLine("Enter bonus amount:");
-            decimal bonus = decimal.Parse(Console.ReadLine());
-            facultyToAward.AwardExcellentStudents(bonus);
+            string bonusStr = Input(BonusMsg);
+            decimal bonusDec = decimal.Parse(bonusStr);
+            facultyToAward.AwardExcellentStudents(bonusDec);
         }
         else
         {
-            throw new Exception("Invalid faculty name");
+            throw new Exception(ErrorInputMsg);
         }
     }
     /// <summary>
@@ -133,8 +158,7 @@ class Tools
     {
         foreach (var faculty in faculties)
         {
-            Console.WriteLine($"{faculty.Name} {faculty.DeanLastName} {faculty.DeanPhone}");
-            Console.WriteLine("№ | LastName | Average_Score | Scholarship");
+            Console.WriteLine($"{faculty.Name} {faculty.DeanLastName} {faculty.DeanPhone}\n{InfoStudentMsg}");
             var studentsInFaculty = students.Where(s => s.FacultyName == faculty.Name).ToList();
             int count = 1;
             foreach (var student in studentsInFaculty)
@@ -156,5 +180,18 @@ class Tools
         string basePath = AppContext.BaseDirectory;
         string projectDir = Path.GetFullPath(Path.Combine(basePath, @"..\..\..\"));
         return Path.Combine(projectDir, fileName);
+    }
+    /// <summary>
+    /// Input and verification
+    /// </summary>
+    static string Input(string message)
+    {
+        Console.Write(message);
+        string? input = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            throw new Exception(ErrorInputMsg);
+        }
+        return input;
     }
 }
