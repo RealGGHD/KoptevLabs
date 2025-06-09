@@ -5,7 +5,7 @@ using Task1;
 class Tools
 {
     //Fields
-    private const string FileNameMsg = "Write file name (input): ";
+    private const string AthletesFile = "input";
     private const string SportNameMsg = "\nWrite name of sport you need (index): ";
     private const string ErrorAthleteMsg = "Athletes not found";
     private const string MenuMsg = "№ | Surname | Age";
@@ -15,19 +15,21 @@ class Tools
     /// </summary>
     static void Main()
     {
-        string fileName = Input(FileNameMsg);
-        string[] lines = GetFileData($"{fileName}.txt");
+        string[] lines = GetFileData(AthletesFile);
         
         List<Athletes> athletesArray = new List<Athletes>();
         foreach (string line in lines)
         {
             string[] parts = line.Split(' ');
-            string LastName = parts[0];
-            DateTime BirthDate = DateTime.Parse(parts[1]);
-            SportType Sport = Enum.Parse<SportType>(parts[2]);
-            Category Rank = Enum.Parse<Category>(parts[3]);
+            string lastName = parts[0];
+            string dateOfBirth = parts[1];
+            string sportName = parts[2];
+            string rankName = parts[3];
+            DateTime birthDate = DateTime.Parse(dateOfBirth);
+            SportType sport = Enum.Parse<SportType>(sportName);
+            Category rank = Enum.Parse<Category>(rankName);
             
-            Athletes athlete = new Athletes(LastName, BirthDate, Sport, Rank);
+            Athletes athlete = new Athletes(lastName, birthDate, sport, rank);
             athletesArray.Add(athlete);
         }
         
@@ -58,7 +60,7 @@ class Tools
         SportType selectedSport = (SportType)sports.GetValue(sportIndex);
             
         Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine($"{selectedSport}:");
+        Console.WriteLine(selectedSport + ":");
         Console.ResetColor();
             
         for (int i = 0; i < athletesArray.Count; i++)
@@ -80,7 +82,7 @@ class Tools
         var categoryArray = Enum.GetValues(categoryTypes);
         foreach (Category category in categoryArray)
         {
-            string fileName = $"{category}.txt";
+            string fileName = $"{category}";
 
             var athletesInCategory = athletes
                 .Where(a => a.Rank == category)
@@ -139,7 +141,8 @@ class Tools
         if (inOutputFolder)
             Directory.CreateDirectory(folderPath);
 
-        string fullPath = Path.Combine(folderPath, fileName);
+        string filePath = $"{fileName}.txt";
+        string fullPath = Path.Combine(folderPath, filePath);
         string path = Path.GetFullPath(fullPath);
         return path;
     }
@@ -159,7 +162,8 @@ class Tools
     {
         Console.Write(message);
         string? input = Console.ReadLine();
-        if (string.IsNullOrWhiteSpace(input))
+        bool isNull = string.IsNullOrWhiteSpace(input);
+        if (isNull)
         {
             throw new Exception(ErrorInputMsg);
         }

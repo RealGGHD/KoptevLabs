@@ -5,8 +5,8 @@ namespace Lab8;
 class Tools
 {
     //Private fields
-    private const string FacultyFileMsg = "Write faculty file name (faculties): ";
-    private const string StudentsFileMsg = "Write students file name (students): ";
+    private const string FacultyFile = "faculties";
+    private const string StudentsFile = "students";
     private const string ErrorInputMsg = "Error: Invalid input!";
     private const string MenuMsg = "Rename Faculty Name (1) or Award Excellent Student (2)\nWhat would you like to do: ";
     private const string InfoOptionMsg = "Print updated info (1) or skip(2): ";
@@ -21,11 +21,8 @@ class Tools
     /// </summary>
     static void Main()
     {
-        string facultiesName = Input(FacultyFileMsg);
-        var faculties = ReadFaculties($"{facultiesName}.txt");
-        
-        string studentsName = Input(StudentsFileMsg);
-        var students = ReadStudents($"{studentsName}.txt"); 
+        var faculties = ReadFaculties(FacultyFile);
+        var students = ReadStudents(StudentsFile); 
         
         foreach (var faculty in faculties)
         {
@@ -159,7 +156,8 @@ class Tools
         foreach (var faculty in faculties)
         {
             Console.WriteLine($"{faculty.Name} {faculty.DeanLastName} {faculty.DeanPhone}\n{InfoStudentMsg}");
-            var studentsInFaculty = students.Where(s => s.FacultyName == faculty.Name).ToList();
+            var sorted = students.Where(s => s.FacultyName == faculty.Name);
+            List<Student> studentsInFaculty = sorted.ToList();
             int count = 1;
             foreach (var student in studentsInFaculty)
             {
@@ -179,7 +177,8 @@ class Tools
     {
         string basePath = AppContext.BaseDirectory;
         string projectDir = Path.GetFullPath(Path.Combine(basePath, @"..\..\..\"));
-        return Path.Combine(projectDir, fileName);
+        string filePath = $"{fileName}.txt";
+        return Path.Combine(projectDir, filePath);
     }
     /// <summary>
     /// Input and verification
@@ -188,7 +187,8 @@ class Tools
     {
         Console.Write(message);
         string? input = Console.ReadLine();
-        if (string.IsNullOrWhiteSpace(input))
+        bool isNull = string.IsNullOrWhiteSpace(input);
+        if (isNull)
         {
             throw new Exception(ErrorInputMsg);
         }

@@ -46,17 +46,20 @@ public struct Athletes
     {
         DateTime today = DateTime.Today;
         int age = today.Year - BirthDate.Year;
-        bool birthdayHasPassedThisYear;
-        if ((today.Month > BirthDate.Month) || (today.Month == BirthDate.Month && today.Day >= BirthDate.Day))
+        bool BDayHasPassedThisYear;
+        var hasBDayMonthPassedInThisYear  = today.Month > BirthDate.Month;
+        var isBDayMonth = today.Month == BirthDate.Month;
+        var isBDayOrPassed  = today.Day >= BirthDate.Day;
+        if (hasBDayMonthPassedInThisYear || (isBDayMonth && isBDayOrPassed))
         {
-            birthdayHasPassedThisYear = true;
+            BDayHasPassedThisYear = true;
         }
         else
         {
-            birthdayHasPassedThisYear = false;
+            BDayHasPassedThisYear = false;
         }
         
-        if (!birthdayHasPassedThisYear)
+        if (!BDayHasPassedThisYear)
         {
             age--;
         }

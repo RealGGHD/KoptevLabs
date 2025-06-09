@@ -29,33 +29,37 @@ public class StudentEvent
     /// </summary>
     public int GetStudentCount(List<Student> students)
     {
-        return students.Count;
+        var count = students.Count;
+        return count;
     }
     /// <summary>
     /// Sort students by last name. Ascending (A to Z) or Descending (Z to A).
     /// </summary>
     public List<Student> GetStudentsSortedByLastName(List<Student> students)
     {
-        students = students.OrderBy(s => s.LastName).ToList(); // A to Z
-        return students;
+        var sorted = students.OrderBy(s => s.LastName).ToList(); // A to Z
+        return sorted;
     }
     /// <summary>
     /// Get total scholarship around all students
     /// </summary>
     public decimal GetTotalScholarship(List<Student> students)
     {
-        return students.Sum(s => s.Scholarship);
+        var total = students.Sum(s => s.Scholarship);
+        return total;
     }
     /// <summary>
     /// Get students with average score above than specific
     /// </summary>
     public void GetStudentsWithAverageGradeAbove(List<Student> students, double threshold)
     {
-        students = students.Where(s => s.AverageGrade() > threshold).ToList();
+        var sorted = students.Where(s => s.AverageGrade() > threshold);
+        students = sorted.ToList();
 
-        List<string> lastNames = students.Select(s => s.LastName).ToList();
+        var selected = students.Select(s => s.LastName);
+        List<string> lastNames = selected.ToList();
 
         string result = string.Join(", ", lastNames);
-        Console.WriteLine($"{result}.");
+        Console.Write($"{result}.\n");
     }
 }

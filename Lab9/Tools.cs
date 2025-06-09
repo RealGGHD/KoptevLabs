@@ -5,62 +5,83 @@ namespace Lab9;
 class Tools
 {
     static StudentEvent updater = new StudentEvent();
+    //Private fields
+    private const string FileStudentsName = "students";
+    private const string ErrorInputMsg = "Error: Invalid input!";
+    private const string MenuLogo = "\nMenu:";
+    private const string MenuInfo = "Add student (1), Remove student (2), Add award to student (3)\nWhat would you like to do: ";
+    private const string DataChanged = "\nData changed. Stats update:";
+    private const string SortedStudent = "\nSorted students by alphabet (from A to Z):";
+    private const string NumStudents = "Number of students: ";
+    private const string Scholarship = "\nTotal scholarship: : ";
+    private const string SortedAverageScore = "\nStudents with average score above 5: ";
+    private const double Threshold = 5.0;
+    private const string InfoMsg = "№ | LastName | Average_Score | Scholarship";
+    private const string AddStdLastName = "Write last name: ";
+    private const string AddStdGrades = "Write grade (like 5 4 10): ";
+    private const string AddStdScholarship = "Write scholarship: ";
+    private const string AskStdNumber = "Write number of student: ";
+    private const string AddAwardMsg = "Add award to student: ";
     /// <summary>
     /// All grades are 10 for specific student?
     /// </summary>
     static void Main()
     {
-        var students = ReadStudents("students.txt"); 
+        var students = ReadStudents(FileStudentsName); 
         
         updater.DataChanged += () =>
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\nData changed. Stats update:");
+            Console.WriteLine(DataChanged);
             Console.ResetColor();
             
             int studentsNum = updater.GetStudentCount(students);
-            Console.WriteLine($"Number of students: {studentsNum}.");
+            Console.WriteLine(NumStudents + studentsNum);
             
             students = updater.GetStudentsSortedByLastName(students);
-            Console.WriteLine($"\nSorted students by alphabet (from A to Z):");
+            Console.WriteLine(SortedStudent);
             PrintInfo(students);
             
             decimal totalScholarship = updater.GetTotalScholarship(students);
-            Console.WriteLine($"\nTotal scholarship: {totalScholarship}.");
+            Console.WriteLine(Scholarship + totalScholarship);
             
-            Console.WriteLine($"\nStudents with average score above 5: ");
-            updater.GetStudentsWithAverageGradeAbove(students,5.0);
+            Console.Write(SortedAverageScore);
+            updater.GetStudentsWithAverageGradeAbove(students,Threshold);
         };
         
         PrintInfo(students);
         
         while (true)
         {
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("\nMenu");
-            Console.ResetColor();
+            Menu(students);
+        }
+    }
+    /// <summary>
+    /// Menu for our program
+    /// </summary>
+    static void Menu(List<Student> students)
+    {
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.WriteLine(MenuLogo);
+        Console.ResetColor();
             
-            Console.WriteLine("Add student (1), Remove student (2), Add award to student (3)");
-            Console.Write("What would you like to do: ");
-            string input = Console.ReadLine();
-            int choose = Convert.ToInt32(input); 
-            if (choose == 1)
-            {
-                AddStudent(students);
-            }
-            else if (choose == 2)
-            {
-                RemoveStudent(students);
-            }
-            else if (choose == 3)
-            {
-                AddAward(students);
-            }
-            else
-            {
-                Console.WriteLine("Invalid input");
-                break;
-            }
+        string input = Input(MenuInfo);
+        int choose = Convert.ToInt32(input); 
+        if (choose == 1)
+        {
+            AddStudent();
+        }
+        else if (choose == 2)
+        {
+            RemoveStudent(students);
+        }
+        else if (choose == 3)
+        {
+            AddAward(students);
+        }
+        else
+        {
+            throw new Exception(ErrorInputMsg);
         }
     }
     /// <summary>
@@ -92,13 +113,14 @@ class Tools
     static void PrintInfo(List<Student> students)
     {
         int count = 1;
-        Console.WriteLine("№ | LastName | Average_Score | Scholarship");
+        Console.WriteLine(InfoMsg);
         foreach (var student in students)
         {
             string LastName = student.LastName;
             double AverageScore = student.AverageGrade();
             decimal Scholarship = student.Scholarship;
-            Console.WriteLine($"{count} | {LastName} | {AverageScore} | {Scholarship}");
+            string msg = $"{count} | {LastName} | {AverageScore} | {Scholarship}";
+            Console.WriteLine(msg);
             count++;
         }
     }
@@ -109,45 +131,65 @@ class Tools
     {
         string basePath = AppContext.BaseDirectory;
         string projectDir = Path.GetFullPath(Path.Combine(basePath, @"..\..\..\"));
-        return Path.Combine(projectDir, fileName);
+        string filePath = $"{fileName}.txt";
+        return Path.Combine(projectDir, filePath);
     }
-
-    public static void AddStudent(List<Student> students)
+    /// <summary>
+    /// Add student
+    /// </summary>
+    static void AddStudent()
     {
-        Console.Write("Write last name: ");
-        string lastName = Console.ReadLine();
+        string lastName = Input(AddStdLastName);
         
-        Console.WriteLine("Write grade (like 5 4 10): ");
-        string grade = Console.ReadLine();
-        List<int> gradesList = grade.Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
+        string grade = Input(AddStdGrades);
+        var grades = grade.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        var gradesInt = grades.Select(int.Parse);
+        List<int> gradesList = gradesInt.ToList();
         
-        Console.WriteLine("Write scholarship: ");
-        string scholarship = Console.ReadLine();
+        string scholarship = Input(AddStdScholarship);
         decimal scholarshipConverted = decimal.Parse(scholarship);
         
         Student newStudent = new Student(lastName, gradesList, scholarshipConverted);
         
         updater.AddStudent(newStudent);
     }
+    /// <summary>
+    /// Remove specific student
+    /// </summary>
     static void RemoveStudent(List<Student> students)
     {
-        Console.Write("Write number of student: ");
-        string str = Console.ReadLine();
+        string str = Input(AskStdNumber);
         int number = Int32.Parse(str);
-
-        updater.RemoveStudent(students[--number]);
+        int index = number - 1;
+        
+        updater.RemoveStudent(students[index]);
     }
-
+    /// <summary>
+    /// Add award bonus for specific student
+    /// </summary>
     static void AddAward(List<Student> students)
     {
-        Console.Write("Write number of student: ");
-        string str = Console.ReadLine();
+        string str = Input(AskStdNumber);
         int number = Int32.Parse(str);
+        int index = number - 1;
         
-        Console.Write("Add award to student: ");
-        string award = Console.ReadLine();
+        string award = Input(AddAwardMsg);
         int awardD = Int32.Parse(award);
         
-        updater.AddAward(students[--number], awardD);
+        updater.AddAward(students[index], awardD);
+    }
+    /// <summary>
+    /// Input and verification
+    /// </summary>
+    static string Input(string message)
+    {
+        Console.Write(message);
+        string? input = Console.ReadLine();
+        bool isNull = string.IsNullOrWhiteSpace(input);
+        if (isNull)
+        {
+            throw new Exception(ErrorInputMsg);
+        }
+        return input;
     }
 }

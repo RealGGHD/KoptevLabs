@@ -36,8 +36,9 @@ public class Student
     {
         Scholarship += bonus;
     }
-    
-    // LAB 9
+    /// <summary>
+    /// Print information about that student
+    /// </summary>
     public void Print()
     {
         Console.WriteLine($"Last Name: {LastName}, Average grade: {AverageGrade()}, Scholarship: {Scholarship}.");
