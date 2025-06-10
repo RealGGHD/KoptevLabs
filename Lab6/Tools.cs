@@ -14,12 +14,11 @@ class Tools
     private const string InfoMsg = "№ | Type of figure | Square | Color";
     private const string ErrorInputMsg = "Error: Invalid input!";
     private const string FileNameMsg = "Write file name (input): ";
+    private const string FileName = "input";
     
     static void Main(string[] args)
     {
-        string fileName = Input(FileNameMsg);
-        
-        string[] lines = GetFileData(fileName);
+        string[] lines = GetFileData(FileName);
         
         List<Polygon> polygons = new List<Polygon>();
         
