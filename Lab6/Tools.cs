@@ -10,7 +10,6 @@ class Tools
     private const int rectangleNumSides = 4;
     private const int triangleColorPosition = 3;
     private const int rectangleColorPosition = 4;
-
     private const string InfoMsg = "№ | Type of figure | Square | Color";
     private const string ErrorInputMsg = "Error: Invalid input!";
     private const string FileName = "input";
