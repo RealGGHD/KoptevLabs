@@ -11,9 +11,10 @@ class Tools
     private const int triangleColorPosition = 3;
     private const int rectangleColorPosition = 4;
     private const string InfoMsg = "№ | Type of figure | Square | Color";
-    private const string ErrorInputMsg = "Error: Invalid input!";
     private const string FileName = "input";
-    
+    /// <summary>
+    /// Method to run program
+    /// </summary>
     static void Main(string[] args)
     {
         string[] lines = GetFileData(FileName);
@@ -89,19 +90,5 @@ class Tools
         {
             lengths[i] = int.Parse(parts[i]);
         }
-    }
-    /// <summary>
-    /// Input and verification
-    /// </summary>
-    static string Input(string message)
-    {
-        Console.Write(message);
-        string? input = Console.ReadLine();
-        bool isNull = string.IsNullOrWhiteSpace(input);
-        if (isNull)
-        {
-            throw new Exception(ErrorInputMsg);
-        }
-        return input;
     }
 }

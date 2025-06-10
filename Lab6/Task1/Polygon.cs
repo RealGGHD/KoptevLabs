@@ -1,11 +1,7 @@
 ﻿namespace Lab6.Task1;
+using System;
 
-interface IComparable
-{
-    void Print(int index);
-}
-
-public abstract class Polygon : IComparable
+public abstract class Polygon
 {
     //Private const fields
     private const int maxSides = 4;

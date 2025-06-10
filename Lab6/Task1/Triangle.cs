@@ -15,12 +15,12 @@ public class Triangle : Polygon
     /// </summary>
     public override double SquareCalc()
     {
-        int first = LengthsOfSides[0];
-        int second = LengthsOfSides[1];
-        int third = LengthsOfSides[2];
-        int perimeter = first + second + third;
+        int firstSide = LengthsOfSides[0];
+        int secondSide = LengthsOfSides[1];
+        int thirdSide = LengthsOfSides[2];
+        int perimeter = firstSide + secondSide + thirdSide;
         double halfPerimeter = perimeter / 2.0;
-        double square = Math.Sqrt(halfPerimeter * (halfPerimeter - first) * (halfPerimeter - second) * (halfPerimeter - third));
+        double square = Math.Sqrt(halfPerimeter * (halfPerimeter - firstSide) * (halfPerimeter - secondSide) * (halfPerimeter - thirdSide));
         Square = Math.Round(square, 2);
         return Square;
     }
