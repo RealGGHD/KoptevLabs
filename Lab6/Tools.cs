@@ -10,12 +10,16 @@ class Tools
     private const int rectangleNumSides = 4;
     private const int triangleColorPosition = 3;
     private const int rectangleColorPosition = 4;
+
+    private const string InfoMsg = "№ | Type of figure | Square | Color";
+    private const string ErrorInputMsg = "Error: Invalid input!";
+    private const string FileNameMsg = "Write file name (input): ";
     
     static void Main(string[] args)
     {
-        string fileName = Input("Write file name (input): ");
+        string fileName = Input(FileNameMsg);
         
-        string[] lines = GetFileData($"{fileName}.txt");
+        string[] lines = GetFileData(fileName);
         
         List<Polygon> polygons = new List<Polygon>();
         
@@ -48,12 +52,11 @@ class Tools
             polygon.SquareCalc();
         }
         
-        //Sort all polygons by square from low to high
         polygons.Sort((p1, p2) => p1.Square.CompareTo(p2.Square));
 
         //Print polygons one by one
         int positionOfPolygon  = 1;
-        Console.WriteLine("№ | Type of figure | Square | Color");
+        Console.WriteLine(InfoMsg);
         foreach (var polygon in polygons)
         {
             polygon.Print(positionOfPolygon);
@@ -66,7 +69,7 @@ class Tools
     static string GetPath(string fileName)
     {
         string basePath = AppContext.BaseDirectory;
-        string newPath = $@"..\..\..\{fileName}";
+        string newPath = $@"..\..\..\{fileName}.txt";
         string fullPath = Path.Combine(basePath, newPath);
         string path = Path.GetFullPath(fullPath);
         return path;
@@ -97,11 +100,11 @@ class Tools
     {
         Console.Write(message);
         string? input = Console.ReadLine();
-        if (string.IsNullOrWhiteSpace(input))
+        bool isNull = string.IsNullOrWhiteSpace(input);
+        if (isNull)
         {
-            throw new Exception("Error: Invalid input!");
+            throw new Exception(ErrorInputMsg);
         }
-        Console.Write("\n");
         return input;
     }
 }

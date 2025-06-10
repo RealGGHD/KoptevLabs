@@ -52,7 +52,8 @@ public abstract class Polygon : IComparable
         {
             Console.ForegroundColor = consoleColor;
             string typeFigure = GetType().Name;
-            if (typeFigure == "Triangle" && Color == "Red" && IsRectangular())
+            var isTrinagleRectangular = IsRectangular();
+            if (typeFigure == "Triangle" && Color == "Red" && isTrinagleRectangular)
             {
                 int first = LengthsOfSides[0];
                 int second = LengthsOfSides[1];
