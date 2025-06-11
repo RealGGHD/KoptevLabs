@@ -59,13 +59,7 @@ class Tools
             throw new Exception(ErrorInputMsg);
         }
             
-        string infoStr = Input(InfoOptionMsg);
-        int infoInt = Convert.ToInt32(infoStr);
-        if (infoInt == 1)
-        {
-            Console.WriteLine(InfoMsg);
-            PrintInfo(faculties, students);
-        }
+        PrintInfo(faculties, students);
     }
     /// <summary>
     /// Rename faculty for all students
