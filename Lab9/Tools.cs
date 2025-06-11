@@ -22,6 +22,10 @@ class Tools
     private const string AddStdScholarship = "Write scholarship: ";
     private const string AskStdNumber = "Write number of student: ";
     private const string AddAwardMsg = "Add award to student: ";
+    private const int FirstOption = 1;
+    private const int SecondOption = 2;
+    private const int ThirdOption = 3;
+    private const int MinimalParts = 3;
     /// <summary>
     /// All grades are 10 for specific student?
     /// </summary>
@@ -67,15 +71,15 @@ class Tools
             
         string input = Input(MenuInfo);
         int choose = Convert.ToInt32(input); 
-        if (choose == 1)
+        if (choose == FirstOption)
         {
             AddStudent();
         }
-        else if (choose == 2)
+        else if (choose == SecondOption)
         {
             RemoveStudent(students);
         }
-        else if (choose == 3)
+        else if (choose == ThirdOption)
         {
             AddAward(students);
         }
@@ -95,7 +99,7 @@ class Tools
         foreach (var line in lines)
         {
             var parts = line.Split(',');
-            if (parts.Length >= 3)
+            if (parts.Length >= MinimalParts)
             {
                 string lastName = parts[0].Trim();
                 var grades = parts[1].Split(' ', StringSplitOptions.RemoveEmptyEntries);

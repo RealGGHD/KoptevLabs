@@ -9,13 +9,13 @@ class Tools
     private const string StudentsFile = "students";
     private const string ErrorInputMsg = "Error: Invalid input!";
     private const string MenuMsg = "Rename Faculty Name (1) or Award Excellent Student (2)\nWhat would you like to do: ";
-    private const string InfoOptionMsg = "Print updated info (1) or skip(2): ";
-    private const string InfoMsg = "\nAfter updates:\n";
     private const string FacultyRenameMsg = "Enter faculty name to rename: ";
-    private const string FacultyNewMsg = "Enter new faculty name:";
+    private const string FacultyNewMsg = "Enter new faculty name: ";
     private const string AwardFacultyMsg = "Enter faculty name to award excellent students: ";
     private const string BonusMsg = "Enter bonus amount: ";
     private const string InfoStudentMsg = "№ | LastName | Average_Score | Scholarship";
+    private const int FirstOption = 1;
+    private const int SecondOption = 2;
     /// <summary>
     /// All grades are 10 for specific student?
     /// </summary>
@@ -46,11 +46,11 @@ class Tools
     {
         string optionStr = Input(MenuMsg);
         int optionInt = Convert.ToInt32(optionStr); 
-        if (optionInt == 1)
+        if (optionInt == FirstOption)
         {
             RenameFaculty(faculties);
         }
-        else if (optionInt == 2)
+        else if (optionInt == SecondOption)
         {
             AwardStudent(faculties);
         }
@@ -133,7 +133,7 @@ class Tools
             {
                 string lastName = parts[0].Trim();
                 string facultyName = parts[1].Trim();
-                var grades = parts[2].Split(' ');
+                var grades = parts[2].Split(' ', StringSplitOptions.RemoveEmptyEntries); //Remove empty gaps
                 var gradesInt = grades.Select(int.Parse);
                 List<int> gradesList = gradesInt.ToList();
                 decimal scholarship = decimal.Parse(parts[3].Trim());
@@ -147,6 +147,7 @@ class Tools
     /// </summary>
     static void PrintInfo(List<Faculty> faculties, List<Student> students)
     {
+        Console.Write("\n");
         foreach (var faculty in faculties)
         {
             Console.WriteLine($"{faculty.Name} {faculty.DeanLastName} {faculty.DeanPhone}\n{InfoStudentMsg}");

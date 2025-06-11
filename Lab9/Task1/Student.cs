@@ -20,14 +20,24 @@ public class Student
     /// </summary>
     public bool IsExcellent()
     {
-        return Grades.All(x => x == 10);
+        bool excellent = Grades.All(x => x == 10);
+        return excellent;
     }
     /// <summary>
     /// Average score
     /// </summary>
     public double AverageGrade()
     { 
-        return Grades.Count == 0 ? 0 : Grades.Average();
+        int NumberOfGrades = Grades.Count;
+        if (NumberOfGrades == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            double averageGrades = Grades.Average();
+            return averageGrades;
+        }
     }
     /// <summary>
     /// Add bonus to scholarship for excellent students
@@ -41,6 +51,7 @@ public class Student
     /// </summary>
     public void Print()
     {
-        Console.WriteLine($"Last Name: {LastName}, Average grade: {AverageGrade()}, Scholarship: {Scholarship}.");
+        double averageGrade = AverageGrade();
+        Console.WriteLine($"Last Name: {LastName}, Average grade: {averageGrade}, Scholarship: {Scholarship}.");
     }
 }
