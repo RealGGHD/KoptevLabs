@@ -16,6 +16,8 @@ class Tools
     private const string InfoStudentMsg = "№ | LastName | Average_Score | Scholarship";
     private const int FirstOption = 1;
     private const int SecondOption = 2;
+    private const int MinPartsFaculty = 3;
+    private const int MinPartsStudent = 4;
     /// <summary>
     /// All grades are 10 for specific student?
     /// </summary>
@@ -107,7 +109,7 @@ class Tools
         foreach (var line in lines)
         {
             var parts = line.Split(',');
-            if (parts.Length >= 3)
+            if (parts.Length >= MinPartsFaculty)
             {
                 string name = parts[0].Trim();
                 string deanLastName = parts[1].Trim();
@@ -129,7 +131,7 @@ class Tools
         foreach (var line in lines)
         {
             var parts = line.Split(',');
-            if (parts.Length >= 4)
+            if (parts.Length >= MinPartsStudent)
             {
                 string lastName = parts[0].Trim();
                 string facultyName = parts[1].Trim();

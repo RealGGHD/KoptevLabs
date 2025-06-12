@@ -7,6 +7,9 @@ public class Student
     public string FacultyName { get; set; }
     public decimal Scholarship { get; set; }
     public List<int> Grades { get; set; }
+
+    private const int MaxGrade = 10;
+    private const int NoGrades = 0;
     /// <summary>
     /// Constructor for this class
     /// </summary>
@@ -22,14 +25,14 @@ public class Student
     /// </summary>
     public bool IsExcellent()
     {
-        return Grades.All(x => x == 10);
+        return Grades.All(x => x == MaxGrade);
     }
     /// <summary>
     /// Average score
     /// </summary>
     public double AverageGrade()
     {
-        if (Grades.Count == 0)
+        if (Grades.Count == NoGrades)
         {
             return 0;
         }
