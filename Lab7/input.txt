@@ -4,3 +4,13 @@ Sidorov 2008-03-05 Acrobatics Adult_I
 Kuznetsov 2007-12-15 Athletics Youth_III
 Smirnov 2006-08-30 Boxing Adult_II
 Fedorov 2011-01-20 Swimming Youth_I
+Morozov 2005-11-03 Athletics Adult_III
+Volkov 2010-02-27 Acrobatics Youth_I
+Nikolaev 2009-06-14 Boxing Youth_II
+Pavlov 2008-09-10 Swimming Adult_I
+Lebedev 2007-04-25 Athletics Youth_III
+Semenov 2006-12-01 Boxing Adult_II
+Egorov 2011-10-18 Acrobatics Youth_I
+Vinogradov 2009-03-09 Swimming Youth_II
+Mikhailov 2005-07-21 Athletics Adult_III
+Tarasov 2006-01-05 Acrobatics Adult_II

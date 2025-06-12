@@ -46,20 +46,20 @@ public struct Athletes
     {
         DateTime today = DateTime.Today;
         int age = today.Year - BirthDate.Year;
-        bool BDayHasPassedThisYear;
+        bool bDayHasPassedThisYear;
         var hasBDayMonthPassedInThisYear  = today.Month > BirthDate.Month;
         var isBDayMonth = today.Month == BirthDate.Month;
         var isBDayOrPassed  = today.Day >= BirthDate.Day;
         if (hasBDayMonthPassedInThisYear || (isBDayMonth && isBDayOrPassed))
         {
-            BDayHasPassedThisYear = true;
+            bDayHasPassedThisYear = true;
         }
         else
         {
-            BDayHasPassedThisYear = false;
+            bDayHasPassedThisYear = false;
         }
         
-        if (!BDayHasPassedThisYear)
+        if (!bDayHasPassedThisYear)
         {
             age--;
         }
@@ -71,10 +71,10 @@ public struct Athletes
     public void PrintInfo()
     {
         int age = GetAge();
-        string BirthDateStr = BirthDate.ToString(DateFormat);
+        string birthDateStr = BirthDate.ToString(DateFormat);
         
         Console.WriteLine(LastNameMsg + LastName);
-        Console.WriteLine(BirthDateMsg + BirthDateStr);
+        Console.WriteLine(BirthDateMsg + birthDateStr);
         Console.WriteLine(AgeMsg + age);
         Console.WriteLine(SportMsg + Sport);
         Console.WriteLine(CategoryMsg + Rank + "\n");

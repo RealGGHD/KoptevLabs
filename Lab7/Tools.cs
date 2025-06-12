@@ -6,10 +6,11 @@ class Tools
 {
     //Fields
     private const string AthletesFile = "input";
-    private const string SportNameMsg = "\nWrite name of sport you need (index): ";
+    private const string SportNameMsg = "\nAbove you see all available sports. Select index: ";
     private const string ErrorAthleteMsg = "Athletes not found";
     private const string MenuMsg = "№ | Surname | Age";
     private const string ErrorInputMsg = "Error: Invalid input!";
+    private const string StartMsg = "This program allows you to view the surnames of athletes by their type of sport.";
     /// <summary>
     /// Main method
     /// </summary>
@@ -44,6 +45,7 @@ class Tools
     /// </summary>
     static void Menu(List<Athletes> athletesArray)
     {
+        Console.WriteLine(StartMsg);
         Type sportTypes = typeof(SportType);
         var sportArray = Enum.GetValues(sportTypes);
         int count = 1;
@@ -68,7 +70,6 @@ class Tools
             if (athletesArray[i].Sport == selectedSport)
             {
                 Console.WriteLine(athletesArray[i].LastName);
-                break;
             }
         }
         Console.Write("\n");
