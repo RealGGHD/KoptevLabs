@@ -2,22 +2,28 @@
 
 public class StudentEvent
 {
+    //Private fields
     private List<Student> students = new List<Student>();
-
     public event Action? DataChanged;
-
+    /// <summary>
+    /// Add student to list
+    /// </summary>
     public void AddStudent(Student student)
     {
         students.Add(student);
         DataChanged?.Invoke();
     }
-
+    /// <summary>
+    /// Remove student from list
+    /// </summary>
     public void RemoveStudent(Student student)
     {
         students.Remove(student);
         DataChanged?.Invoke();
     }
-    
+    /// <summary>
+    /// Add bonus to student
+    /// </summary>
     public void AddAward(Student student, int bonus)
     {
         student.AddBonus(bonus);

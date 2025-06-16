@@ -2,13 +2,11 @@
 
 public class Student
 {
-    //Fields
+    //Private Fields
     public string LastName { get; set; }
     public decimal Scholarship { get; set; }
     public List<int> Grades { get; set; }
-    
     private const int NoGrades = 0;
-    private const int MaxGrade = 10;
     /// <summary>
     /// Constructor for this class
     /// </summary>
@@ -17,14 +15,6 @@ public class Student
         LastName = lastName;
         Grades = grades;
         Scholarship = scholarship;
-    }
-    /// <summary>
-    /// All grades are 10 for specific student?
-    /// </summary>
-    public bool IsExcellent()
-    {
-        bool excellent = Grades.All(x => x == MaxGrade);
-        return excellent;
     }
     /// <summary>
     /// Average score
