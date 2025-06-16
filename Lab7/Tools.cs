@@ -3,17 +3,17 @@ using Task1;
 
 class Tools
 {
-    //Fields
+    //Private fields
     private const string AthletesFile = "input";
     /// <summary>
     /// Main method
     /// </summary>
     static void Main()
     {
-        FileAction File = new FileAction();
-        MenuAction Menu = new MenuAction();
+        FileAction file = new FileAction();
+        MenuAction menu = new MenuAction();
         
-        string[] lines = File.GetData(AthletesFile);
+        string[] lines = file.GetData(AthletesFile);
         
         List<Athletes> athletesArray = new List<Athletes>();
         
@@ -32,11 +32,11 @@ class Tools
             athletesArray.Add(athlete);
         }
         
-        File.WriteAthletesByCategory(athletesArray);
+        file.WriteAthletesByCategory(athletesArray);
         
         while (true)
         {
-            Menu.Print(athletesArray);
+            menu.Print(athletesArray);
         }
     }
 }

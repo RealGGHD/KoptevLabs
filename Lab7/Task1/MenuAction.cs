@@ -2,7 +2,7 @@
 
 public class MenuAction
 {
-    //Fields
+    //Private fields
     private const string StartMsg = "This program allows you to view the surnames of athletes by their type of sport.";
     private const string SportNameMsg = "\nAbove you see all available sports. Select index: ";
     private const string ErrorInputMsg = "Error: Invalid input!";

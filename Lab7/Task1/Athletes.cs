@@ -17,7 +17,7 @@ public enum Category
 }
 public struct Athletes
 {
-    //Public fields
+    //Private fields
     public string LastName { get; set; }
     public DateTime BirthDate { get; set; }
     public SportType Sport { get; set; }

@@ -1,10 +1,9 @@
 ﻿using System.Text;
-
 namespace Lab7.Task1;
 
 public class FileAction
 {
-    //Fields
+    //Private fields
     private const string ErrorAthleteMsg = "Athletes not found";
     private const string MenuMsg = "№ | Surname | Age";
     /// <summary> 
@@ -60,7 +59,7 @@ public class FileAction
     /// <summary>
     /// Get path of input.txt in direstory with Tools.cs
     /// </summary>
-    public string GetPath(string fileName, bool inOutputFolder = false)
+    string GetPath(string fileName, bool inOutputFolder = false)
     {
         string basePath = AppContext.BaseDirectory;
         string folderPath;
