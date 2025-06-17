@@ -43,8 +43,9 @@ public class StudentEvent
     /// </summary>
     public List<Student> GetStudentsSortedByLastName(List<Student> students)
     {
-        var sorted = students.OrderBy(s => s.LastName).ToList(); // A to Z
-        return sorted;
+        var sorted = students.OrderBy(s => s.LastName); // A to Z
+        var sortedList = sorted.ToList();
+        return sortedList;
     }
     /// <summary>
     /// Get total scholarship around all students
