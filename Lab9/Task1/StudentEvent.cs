@@ -16,9 +16,9 @@ public class StudentEvent
     /// <summary>
     /// Remove student from list
     /// </summary>
-    public void RemoveStudent(Student student)
+    public void RemoveStudent(List<Student> students, int index)
     {
-        students.Remove(student);
+        students.Remove(students[index]);
         DataChanged?.Invoke();
     }
     /// <summary>

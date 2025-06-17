@@ -77,8 +77,7 @@ public class MenuAction
         string str = Input(AskStdNumber);
         int number = Int32.Parse(str);
         int index = number - 1;
-        
-        _updater.RemoveStudent(students[index]);
+        _updater.RemoveStudent(students, index); 
     }
     /// <summary>
     /// Add award bonus for specific student

@@ -8,7 +8,7 @@ class Tools
     private const string DataChanged = "\nData changed. Stats update:";
     private const string SortedStudent = "\nSorted students by alphabet (from A to Z):";
     private const string NumStudents = "Number of students: ";
-    private const string Scholarship = "\nTotal scholarship: : ";
+    private const string Scholarship = "\nTotal scholarship: ";
     private const string SortedAverageScore = "\nStudents with average score above 5: ";
     private const double Threshold = 5.0;
     private const string InfoMsg = "№ | LastName | Average_Score | Scholarship";
