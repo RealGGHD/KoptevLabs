@@ -44,15 +44,21 @@ public class Student
     /// <summary>
     /// Update of name for faculty 
     /// </summary>
-    public void UpdateFacultyName(string newFacultyName)
+    public void OnFacultyNameChanged(string newFacultyName)
     {
+        Console.WriteLine($"{LastName}: update faculty name. {FacultyName} => {newFacultyName}");
         FacultyName = newFacultyName;
     }
     /// <summary>
     /// Add bonus to scholarship for excellent students
     /// </summary>
-    public void AddBonus(decimal bonus)
+    public void OnScholarshipBonus(decimal bonusAmount)
     {
-        Scholarship += bonus;
+        bool isStudentExcellent = IsExcellent();
+        if (isStudentExcellent)
+        {
+            Scholarship += bonusAmount;
+            Console.WriteLine($"{LastName}: add scholarship bonus: {bonusAmount}. New scholarship = {Scholarship}");
+        }
     }
 }

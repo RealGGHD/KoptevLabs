@@ -1,5 +1,6 @@
 ﻿namespace Lab8.Task1;
-
+delegate void FacultyNameChangedHandler(string newFacultyName);
+delegate void ScholarshipBonusHandler(decimal bonusAmount);
 public class Faculty
 {
     //Fields
@@ -7,6 +8,8 @@ public class Faculty
     public string Name { get; set; }
     public string DeanPhone { get; set; }
     private List<Student> registeredStudents = new List<Student>();
+    private FacultyNameChangedHandler NameChanged;
+    private ScholarshipBonusHandler ScholarshipBonusAnnounced;
     /// <summary>
     /// Constructor for this class
     /// </summary>
@@ -25,6 +28,8 @@ public class Faculty
         if (!isStudentRegistered)
         {
             registeredStudents.Add(student);
+            NameChanged += student.OnFacultyNameChanged; //Subscribe to delegate
+            ScholarshipBonusAnnounced += student.OnScholarshipBonus; //Subscribe to delegate
         }
     }
     /// <summary>
@@ -32,25 +37,24 @@ public class Faculty
     /// </summary>
     public void ChangeFacultyName(string newName)
     {
-        Name = newName;
-        foreach (var student in registeredStudents)
+        bool isNull = string.IsNullOrWhiteSpace(newName);
+        bool sameName = newName == Name;
+        if (isNull || sameName)
         {
-            student.UpdateFacultyName(newName);
+            return;
         }
+        Name = newName;
+        NameChanged?.Invoke(newName);
     }
     /// <summary>
     /// Bonus to scholarship for excellent student
     /// </summary>
     public void AwardExcellentStudents(decimal bonusAmount)
     {
-        foreach (var student in registeredStudents)
+        if (bonusAmount <= 0)
         {
-            bool isStudentExcellent = student.IsExcellent();
-            if (isStudentExcellent)
-            {
-                student.AddBonus(bonusAmount);
-                Console.WriteLine(student.LastName + " excellent student.");
-            }
+            return;
         }
+        ScholarshipBonusAnnounced?.Invoke(bonusAmount);
     }
 }
